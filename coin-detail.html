@@ -3,46 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Information Hub</title>
+    <title>Coin Detail</title>
     <link rel="stylesheet" href="detail-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search for a coin...">
-                <div id="searchResults" class="search-results-dropdown"></div>
-            </div>
-        </header>
+            <a href="index.html" class="back-button"><i class="fas fa-chevron-left"></i></a>
+            </header>
 
-        <section class="coin-header card glass">
-            <div class="coin-title">
-                <img id="coin-img" src="" alt="coin logo">
-                <div>
-                    <h1 id="coin-name"></h1>
-                    <p id="coin-symbol"></p>
+        <div class="card glass">
+            <div class="coin-header">
+                <div class="coin-title">
+                    <img id="coin-img" src="" alt="coin image">
+                    <div>
+                        <h1 id="coin-name"></h1>
+                        <p id="coin-symbol"></p>
+                    </div>
+                </div>
+                <div class="coin-price">
+                    <h1 id="coin-price"></h1>
+                    <p id="coin-change"></p>
                 </div>
             </div>
-            <div class="coin-price">
-                <h1 id="coin-price"></h1>
-                <p id="coin-change"></p>
-            </div>
-        </section>
-
-        <section class="card glass">
-            <h2><i class="fas fa-link"></i> 公式リンク</h2>
-            <div id="official-links" class="links-grid">
-                </div>
-        </section>
+        </div>
         
-        <section class="stats-container card glass">
-            <h2><i class="fas fa-chart-pie"></i> 統計</h2>
+        <div class="card glass">
+            <h2><i class="fas fa-chart-pie"></i>統計情報</h2>
             <div class="stats-grid">
                 <div class="stat">
-                    <p class="label">時価総額ランク</p>
+                    <p class="label">時価総額ランキング</p>
                     <p class="value" id="market-cap-rank"></p>
                 </div>
                 <div class="stat">
@@ -50,30 +41,36 @@
                     <p class="value" id="market-cap"></p>
                 </div>
                 <div class="stat">
-                    <p class="label">24h出来高</p>
+                    <p class="label">24時間の取引高</p>
                     <p class="value" id="volume-24h"></p>
                 </div>
                 <div class="stat">
                     <p class="label">循環供給量</p>
                     <p class="value" id="circulating-supply"></p>
                 </div>
-                <div class="stat">
+                 <div class="stat">
                     <p class="label">総供給量</p>
                     <p class="value" id="total-supply"></p>
                 </div>
                  <div class="stat">
-                    <p class="label">プロジェクト誕生</p>
+                    <p class="label">誕生</p>
                     <p class="value" id="genesis-date"></p>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <div class="card glass">
+             <h2><i class="fas fa-link"></i>公式リンク</h2>
+             <div class="links-grid" id="official-links">
+                 </div>
+        </div>
 
-        <section class="card glass">
-            <h2><i class="fas fa-book-open"></i> プロジェクト概要</h2>
+        <div class="card glass">
+            <h2><i class="fas fa-info-circle"></i>プロジェクト概要</h2>
             <p id="coin-description"></p>
-        </section>
-
+        </div>
     </div>
+
     <script src="detail-script.js"></script>
 </body>
 </html>
