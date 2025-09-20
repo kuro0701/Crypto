@@ -1,0 +1,288 @@
+/* -------------------------
+ * General Styles
+ * ------------------------- */
+ :root {
+    --background-color: #000000;
+    --card-background: rgba(28, 28, 30, 0.8);
+    --text-color: #E5E5EA;
+    --text-secondary: #8E8E93;
+    --positive-color: #34C759;
+    --negative-color: #FF3B30;
+    --system-blue: #0A84FF;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    background-image: url('images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.glass {
+    background: var(--card-background);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1, h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--system-blue);
+    text-decoration: none;
+}
+
+
+/* -------------------------
+ * Header & Search
+ * ------------------------- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.back-button {
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.search-container {
+    position: relative;
+    width: 60%;
+}
+
+.search-container .fa-search {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 20px 12px 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(118, 118, 128, 0.24);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+#searchInput::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: var(--card-background);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-results-dropdown.visible {
+    display: block;
+}
+
+.search-results-dropdown a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.search-results-dropdown a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-results-dropdown img {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* -------------------------
+ * Coin Header Section
+ * ------------------------- */
+.coin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coin-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.coin-title img {
+    width: 60px;
+    height: 60px;
+}
+
+.coin-title p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 5px 0 0 0;
+}
+
+.coin-price {
+    text-align: right;
+}
+
+.coin-price p {
+    font-size: 18px;
+    margin: 5px 0 0 0;
+}
+
+.positive { color: var(--positive-color); }
+.negative { color: var(--negative-color); }
+
+/* -------------------------
+ * Chart Controls
+ * ------------------------- */
+.chart-container {
+    position: relative;
+    padding-bottom: 60px; /* ボタンのためのスペースを確保 */
+}
+
+#chart-controls {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background-color: rgba(118, 118, 128, 0.24);
+    border-radius: 8.91px;
+    padding: 2px;
+}
+
+.time-range-btn {
+    background-color: transparent;
+    border: none;
+    color: #E5E5EA;
+    padding: 6px 16px;
+    border-radius: 6.93px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.time-range-btn.active {
+    background-color: #636366;
+    color: #FFF;
+}
+
+.time-range-btn:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------------
+ * Stats Section
+ * ------------------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.stat .label {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+
+.stat .value {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* -------------------------
+ * Fundamental Analysis & News
+ * ------------------------- */
+#coin-description {
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+#coin-description a {
+    color: var(--system-blue);
+}
+#additional-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+#additional-info li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#additional-info li:last-child {
+    border-bottom: none;
+}
+#additional-info .label {
+    color: var(--text-secondary);
+}
+
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.news-item:last-child {
+    border-bottom: none;
+}
+.news-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+.news-item p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
