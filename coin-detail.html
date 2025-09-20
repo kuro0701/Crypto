@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Detail</title>
+    <title>Crypto Information Hub</title>
     <link rel="stylesheet" href="detail-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -32,19 +32,19 @@
             </div>
         </section>
 
-        <section class="chart-container card glass">
-             <div id="priceChart" style="height: 400px;"></div>
-             <div id="chart-controls">
-                 <button class="time-range-btn active" data-days="7">7D</button>
-                 <button class="time-range-btn" data-days="30">1M</button>
-                 <button class="time-range-btn" data-days="90">3M</button>
-                 <button class="time-range-btn" data-days="365">1Y</button>
-             </div>
+        <section class="card glass">
+            <h2><i class="fas fa-link"></i> 公式リンク</h2>
+            <div id="official-links" class="links-grid">
+                </div>
         </section>
-
+        
         <section class="stats-container card glass">
-            <h2>統計</h2>
+            <h2><i class="fas fa-chart-pie"></i> 統計</h2>
             <div class="stats-grid">
+                <div class="stat">
+                    <p class="label">時価総額ランク</p>
+                    <p class="value" id="market-cap-rank"></p>
+                </div>
                 <div class="stat">
                     <p class="label">時価総額</p>
                     <p class="value" id="market-cap"></p>
@@ -62,35 +62,18 @@
                     <p class="value" id="total-supply"></p>
                 </div>
                  <div class="stat">
-                    <p class="label">24h 高値</p>
-                    <p class="value" id="high-24h"></p>
-                </div>
-                <div class="stat">
-                    <p class="label">24h 安値</p>
-                    <p class="value" id="low-24h"></p>
+                    <p class="label">プロジェクト誕生</p>
+                    <p class="value" id="genesis-date"></p>
                 </div>
             </div>
         </section>
 
         <section class="card glass">
-            <h2><i class="fas fa-book-open"></i> ファンダメンタル分析</h2>
-            <div id="fundamental-analysis-content">
-                <h3>プロジェクト概要</h3>
-                <p id="coin-description"></p>
-                <h3>追加情報</h3>
-                <ul id="additional-info">
-                    </ul>
-            </div>
-        </section>
-
-        <section class="card glass">
-            <h2><i class="fas fa-newspaper"></i> 関連ニュース</h2>
-            <div id="related-news-content">
-                </div>
+            <h2><i class="fas fa-book-open"></i> プロジェクト概要</h2>
+            <p id="coin-description"></p>
         </section>
 
     </div>
-    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="detail-script.js"></script>
 </body>
 </html>

@@ -48,21 +48,26 @@ h1, h2 {
     font-weight: 600;
 }
 
-h1 {
-    font-size: 28px;
-}
-
+h1 { font-size: 28px; }
 h2 {
     font-size: 22px;
     margin-bottom: 15px;
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+h2 .fas, h2 .fab {
+    color: var(--system-blue);
 }
 
 a {
     color: var(--system-blue);
     text-decoration: none;
 }
-
+a:hover {
+    text-decoration: underline;
+}
 
 /* -------------------------
  * Header & Search
@@ -73,74 +78,8 @@ header {
     justify-content: space-between;
     padding: 10px 0;
 }
-
-.back-button {
-    font-size: 24px;
-    color: var(--text-color);
-}
-
-.search-container {
-    position: relative;
-    width: 60%;
-}
-
-.search-container .fa-search {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-secondary);
-}
-
-#searchInput {
-    width: 100%;
-    padding: 12px 20px 12px 40px;
-    border-radius: 10px;
-    border: none;
-    background-color: rgba(118, 118, 128, 0.24);
-    color: var(--text-color);
-    font-size: 16px;
-}
-
-#searchInput::placeholder {
-    color: var(--text-secondary);
-}
-
-.search-results-dropdown {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background: var(--card-background);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-    display: none;
-}
-
-.search-results-dropdown.visible {
-    display: block;
-}
-
-.search-results-dropdown a {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    gap: 10px;
-    color: var(--text-color);
-}
-
-.search-results-dropdown a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.search-results-dropdown img {
-    width: 24px;
-    height: 24px;
-}
-
+.back-button { font-size: 24px; color: var(--text-color); }
+/* (検索関連のスタイルは省略) */
 
 /* -------------------------
  * Coin Header Section
@@ -150,75 +89,53 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 .coin-title {
     display: flex;
     align-items: center;
     gap: 15px;
 }
-
-.coin-title img {
-    width: 60px;
-    height: 60px;
-}
-
+.coin-title img { width: 60px; height: 60px; }
 .coin-title p {
     color: var(--text-secondary);
     font-size: 18px;
     text-transform: uppercase;
     margin: 5px 0 0 0;
 }
-
-.coin-price {
-    text-align: right;
-}
-
-.coin-price p {
-    font-size: 18px;
-    margin: 5px 0 0 0;
-}
-
+.coin-price { text-align: right; }
+.coin-price p { font-size: 18px; margin: 5px 0 0 0; }
 .positive { color: var(--positive-color); }
 .negative { color: var(--negative-color); }
 
 /* -------------------------
- * Chart Controls
+ * Links Section (★New★)
  * ------------------------- */
-.chart-container {
-    position: relative;
-    padding-bottom: 60px; /* ボタンのためのスペースを確保 */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
-
-#chart-controls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    background-color: rgba(118, 118, 128, 0.24);
-    border-radius: 8.91px;
-    padding: 2px;
-}
-
-.time-range-btn {
-    background-color: transparent;
-    border: none;
-    color: #E5E5EA;
-    padding: 6px 16px;
-    border-radius: 6.93px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.time-range-btn.active {
-    background-color: #636366;
-    color: #FFF;
-}
-
-.time-range-btn:not(.active):hover {
+.link-item {
     background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-color);
+    transition: background-color 0.2s ease;
+}
+.link-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+.link-item i {
+    font-size: 20px;
+    width: 20px; /* アイコンの幅を固定 */
+    text-align: center;
+    color: var(--text-secondary);
+}
+.link-item span {
+    font-weight: 500;
 }
 
 /* -------------------------
@@ -229,13 +146,11 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
 }
-
 .stat .label {
     color: var(--text-secondary);
     font-size: 14px;
     margin: 0 0 5px 0;
 }
-
 .stat .value {
     font-size: 18px;
     font-weight: 500;
@@ -243,46 +158,10 @@ header {
 }
 
 /* -------------------------
- * Fundamental Analysis & News
+ * Description
  * ------------------------- */
 #coin-description {
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-secondary);
-}
-#coin-description a {
-    color: var(--system-blue);
-}
-#additional-info {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-#additional-info li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-#additional-info li:last-child {
-    border-bottom: none;
-}
-#additional-info .label {
-    color: var(--text-secondary);
-}
-
-.news-item {
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.news-item:last-child {
-    border-bottom: none;
-}
-.news-item h3 {
-    margin: 0 0 5px 0;
     font-size: 16px;
-}
-.news-item p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--text-secondary);
 }
