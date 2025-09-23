@@ -1,0 +1,160 @@
+/* exchanges-style.css */
+
+/* --- ページヘッダー --- */
+.page-header {
+    text-align: center;
+    margin: 40px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.page-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+
+/* --- ランキングセクション --- */
+.ranking-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.exchange-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* --- 取引所カードのスタイル --- */
+.card.glass {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.exchange-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+.exchange-title h4 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rank-badge {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 24px;
+}
+
+.exchange-title p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin: 4px 0 0;
+}
+
+.rating {
+    font-size: 1.1rem;
+    color: #f0ad4e;
+    font-weight: 600;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background-color: rgba(77, 138, 255, 0.2);
+    color: var(--accent-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #629eff;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .page-header h2 {
+        font-size: 2rem;
+    }
+    .exchange-list {
+        grid-template-columns: 1fr;
+    }
+}

@@ -9,6 +9,7 @@
     --positive-color: #34C759;
     --negative-color: #FF3B30;
     --system-blue: #0A84FF;
+    --accent-color: #4D8AFF; /* style.cssから流用 */
 }
 
 body {
@@ -43,13 +44,13 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-h1, h2 {
+h1, h2, h3 {
     margin: 0;
     font-weight: 600;
 }
 
 h1 { font-size: 28px; }
-h2 {
+h2, .rating-section h3, .exchange-promo-section h3 {
     font-size: 22px;
     margin-bottom: 15px;
     color: var(--text-secondary);
@@ -57,7 +58,7 @@ h2 {
     align-items: center;
     gap: 10px;
 }
-h2 .fas, h2 .fab {
+h2 .fas, h2 .fab, .rating-section h3 .fas, .exchange-promo-section h3 .fas {
     color: var(--system-blue);
 }
 
@@ -70,7 +71,7 @@ a:hover {
 }
 
 /* -------------------------
- * Header & Search
+ * Header & Navigation
  * ------------------------- */
 header {
     display: flex;
@@ -79,7 +80,17 @@ header {
     padding: 10px 0;
 }
 .back-button { font-size: 24px; color: var(--text-color); }
-/* (検索関連のスタイルは省略) */
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+nav a.active, nav a:hover {
+    color: var(--text-color);
+}
+
 
 /* -------------------------
  * Coin Header Section
@@ -107,7 +118,69 @@ header {
 .negative { color: var(--negative-color); }
 
 /* -------------------------
- * Links Section (★New★)
+ * Chart Section
+ * ------------------------- */
+.chart-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* 高さを固定 */
+}
+.chart-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.time-range-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.time-range-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+.time-range-btn.active {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+.chart-wrapper {
+    flex-grow: 1;
+    position: relative;
+}
+#priceChart {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* -------------------------
+ * Stats Section
+ * ------------------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+.stat .label {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+.stat .value {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* -------------------------
+ * Links Section
  * ------------------------- */
 .links-grid {
     display: grid;
@@ -139,29 +212,149 @@ header {
 }
 
 /* -------------------------
- * Stats Section
- * ------------------------- */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-}
-.stat .label {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin: 0 0 5px 0;
-}
-.stat .value {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-}
-
-/* -------------------------
  * Description
  * ------------------------- */
 #coin-description {
     line-height: 1.7;
     color: var(--text-secondary);
     font-size: 16px;
+}
+
+/* --- プロジェクト評価セクション --- */
+.rating-section {
+    padding: 30px;
+}
+.rating-summary {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.overall-score {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    color: var(--accent-color);
+}
+.overall-score span {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.overall-grade {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 5px 0 0;
+}
+.rating-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.rating-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 40px;
+    align-items: center;
+    gap: 15px;
+}
+.rating-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.rating-score {
+    font-weight: 600;
+    text-align: right;
+}
+.rating-bar-bg {
+    width: 100%;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.rating-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), #89b1ff);
+    border-radius: 5px;
+}
+.rating-comment {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+/* --- 取引所への誘導セクション --- */
+.exchange-promo-section {
+    padding: 30px;
+}
+.exchange-promo-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.exchange-promo-item:last-child {
+    border-bottom: none;
+}
+.exchange-promo-info {
+    flex-grow: 1;
+}
+.exchange-promo-info h4 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+}
+.exchange-promo-info p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+.exchange-promo-item .btn {
+    flex-shrink: 0;
+}
+
+.exchange-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+/* --- 汎用ボタンスタイル --- */
+.btn {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #629eff;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 768px) {
+    .rating-item {
+        grid-template-columns: 80px 1fr 40px;
+    }
+    .exchange-promo-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .exchange-promo-item .btn {
+        width: 100%;
+        text-align: center;
+    }
 }

@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coin Detail</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="detail-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
             <a href="index.html" class="back-button"><i class="fas fa-chevron-left"></i></a>
-            </header>
+            <nav>
+                <a href="index.html">ホーム</a>
+                <a href="exchanges.html">取引所</a>
+                <a href="blog.html">ブログ</a>
+            </nav>
+        </header>
 
         <div class="card glass">
             <div class="coin-header">
@@ -26,6 +34,18 @@
                     <h1 id="coin-price"></h1>
                     <p id="coin-change"></p>
                 </div>
+            </div>
+        </div>
+
+        <div class="card glass chart-card">
+            <div class="chart-controls">
+                <button class="time-range-btn active" data-days="7">7D</button>
+                <button class="time-range-btn" data-days="30">30D</button>
+                <button class="time-range-btn" data-days="90">90D</button>
+                <button class="time-range-btn" data-days="365">1Y</button>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="priceChart"></canvas>
             </div>
         </div>
         
@@ -54,15 +74,73 @@
                 </div>
                  <div class="stat">
                     <p class="label">誕生</p>
-                    <p class="value" id="genesis-date"></p>
+                    <p class="value"id="genesis-date"></p>
                 </div>
             </div>
         </div>
-        
+
+        <section class="rating-section card glass">
+            <h3><i class="fas fa-star-half-alt"></i> プロジェクト評価</h3>
+            <div class="rating-summary">
+                <p class="overall-score">85<span>/100</span></p>
+                <p class="overall-grade">評価: A</p>
+            </div>
+            <div class="rating-details">
+                <div class="rating-item">
+                    <span class="rating-label">将来性</span>
+                    <div class="rating-bar-bg"><div class="rating-bar" style="width: 90%;"></div></div>
+                    <span class="rating-score">4.5</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">技術力</span>
+                    <div class="rating-bar-bg"><div class="rating-bar" style="width: 80%;"></div></div>
+                    <span class="rating-score">4.0</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">チーム</span>
+                    <div class="rating-bar-bg"><div class="rating-bar" style="width: 88%;"></div></div>
+                    <span class="rating-score">4.4</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">トークノミクス</span>
+                    <div class="rating-bar-bg"><div class="rating-bar" style="width: 76%;"></div></div>
+                    <span class="rating-score">3.8</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">コミュニティ</span>
+                    <div class="rating-bar-bg"><div class="rating-bar" style="width: 82%;"></div></div>
+                    <span class="rating-score">4.1</span>
+                </div>
+            </div>
+            <div class="rating-comment">
+                <p><strong>総評：</strong>DeFi領域における高い技術力と、強力なベンチャーキャピタルからの支援が評価のポイント。市場の拡大とともに、さらなる成長が期待される有望なプロジェクトです。</p>
+            </div>
+        </section>
+
+        <section class="exchange-promo-section card glass">
+            <h3><i class="fas fa-store"></i> この仮想通貨が購入できる取引所</h3>
+            <div class="exchange-promo-item">
+                <img src="https://via.placeholder.com/50" alt="Coincheck Logo" class="exchange-logo">
+                <div class="exchange-promo-info">
+                    <h4>コインチェック</h4>
+                    <p>国内人気No.1！初心者でもアプリで簡単に購入可能。</p>
+                </div>
+                <a href="【ここにCoincheckのアフィリエイトリンク】" class="btn btn-primary" target="_blank" rel="noopener noreferrer">コインチェックで購入</a>
+            </div>
+             <div class="exchange-promo-item">
+                <img src="https://via.placeholder.com/50" alt="GMO Coin Logo" class="exchange-logo">
+                <div class="exchange-promo-info">
+                    <h4>GMOコイン</h4>
+                    <p>手数料が安く、多くの銘柄を取り扱う実力派。</p>
+                </div>
+                <a href="【ここにGMOコインのアフィリエイトリンク】" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GMOコインで購入</a>
+            </div>
+        </section>
+
         <div class="card glass">
              <h2><i class="fas fa-link"></i>公式リンク</h2>
              <div class="links-grid" id="official-links">
-                 </div>
+             </div>
         </div>
 
         <div class="card glass">
@@ -72,5 +150,5 @@
     </div>
 
     <script src="detail-script.js"></script>
-</body>
+    </body>
 </html>
