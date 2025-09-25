@@ -1,360 +1,165 @@
-/* -------------------------
- * General Styles
- * ------------------------- */
- :root {
-    --background-color: #000000;
-    --card-background: rgba(28, 28, 30, 0.8);
-    --text-color: #E5E5EA;
-    --text-secondary: #8E8E93;
-    --positive-color: #34C759;
-    --negative-color: #FF3B30;
-    --system-blue: #0A84FF;
-    --accent-color: #4D8AFF; /* style.cssから流用 */
+/* 詳細ページヘッダー */
+.detail-header {
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+.back-button {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.2s ease;
+}
+.back-button:hover {
+    color: var(--text-primary);
+}
+.back-button i {
+    margin-right: 8px;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 20px;
-    background-image: url('images/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+/* 2カラムレイアウト */
+.detail-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: start;
 }
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+.left-column, .right-column {
     display: flex;
     flex-direction: column;
+    gap: 30px;
+}
+@media (max-width: 900px) {
+    .detail-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 基本情報カード */
+.coin-main-info .coin-title {
+    display: flex;
+    align-items: center;
     gap: 20px;
 }
-
-.card {
-    border-radius: 16px;
-    padding: 20px;
+.coin-main-info img {
+    width: 60px;
+    height: 60px;
 }
-
-.glass {
-    background: var(--card-background);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-h1, h2, h3 {
+.coin-main-info h1 {
     margin: 0;
-    font-weight: 600;
+    font-size: 2.2em;
 }
-
-h1 { font-size: 28px; }
-h2, .rating-section h3, .exchange-promo-section h3 {
-    font-size: 22px;
-    margin-bottom: 15px;
+.coin-main-info p {
+    margin: 0;
     color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-h2 .fas, h2 .fab, .rating-section h3 .fas, .exchange-promo-section h3 .fas {
-    color: var(--system-blue);
-}
-
-a {
-    color: var(--system-blue);
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-
-/* -------------------------
- * Header & Navigation
- * ------------------------- */
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-}
-.back-button { font-size: 24px; color: var(--text-color); }
-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-nav a.active, nav a:hover {
-    color: var(--text-color);
-}
-
-
-/* -------------------------
- * Coin Header Section
- * ------------------------- */
-.coin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.coin-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.coin-title img { width: 60px; height: 60px; }
-.coin-title p {
-    color: var(--text-secondary);
-    font-size: 18px;
+    font-size: 1.2em;
     text-transform: uppercase;
-    margin: 5px 0 0 0;
-}
-.coin-price { text-align: right; }
-.coin-price p { font-size: 18px; margin: 5px 0 0 0; }
-.positive { color: var(--positive-color); }
-.negative { color: var(--negative-color); }
-
-/* -------------------------
- * Chart Section
- * ------------------------- */
-.chart-card {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 400px; /* 高さを固定 */
-}
-.chart-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-.time-range-btn {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-secondary);
-    padding: 5px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-.time-range-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: var(--text-color);
-}
-.time-range-btn.active {
-    background-color: var(--accent-color);
-    color: #fff;
-    border-color: var(--accent-color);
-}
-.chart-wrapper {
-    flex-grow: 1;
-    position: relative;
-}
-#priceChart {
-    width: 100%;
-    height: 100%;
 }
 
-
-/* -------------------------
- * Stats Section
- * ------------------------- */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-}
-.stat .label {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin: 0 0 5px 0;
-}
-.stat .value {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-}
-
-/* -------------------------
- * Links Section
- * ------------------------- */
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-.link-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-color);
-    transition: background-color 0.2s ease;
-}
-.link-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-}
-.link-item i {
-    font-size: 20px;
-    width: 20px; /* アイコンの幅を固定 */
-    text-align: center;
-    color: var(--text-secondary);
-}
-.link-item span {
-    font-weight: 500;
-}
-
-/* -------------------------
- * Description
- * ------------------------- */
-#coin-description {
-    line-height: 1.7;
-    color: var(--text-secondary);
-    font-size: 16px;
-}
-
-/* --- プロジェクト評価セクション --- */
-.rating-section {
-    padding: 30px;
+/* 評価セクション */
+.rating-section h3, .description-section h2, #official-links-container h2 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 .rating-summary {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 .overall-score {
-    font-size: 4rem;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1;
-    color: var(--accent-color);
+    font-size: 3em;
+    font-weight: 300;
 }
 .overall-score span {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 0.4em;
     color: var(--text-secondary);
 }
 .overall-grade {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 5px 0 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
 }
-.rating-details {
+.rating-details .rating-item {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-.rating-item {
-    display: grid;
-    grid-template-columns: 100px 1fr 40px;
     align-items: center;
-    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.95em;
 }
 .rating-label {
-    font-weight: 500;
+    width: 100px;
     color: var(--text-secondary);
 }
-.rating-score {
-    font-weight: 600;
-    text-align: right;
-}
 .rating-bar-bg {
-    width: 100%;
-    height: 10px;
+    flex-grow: 1;
+    height: 8px;
     background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    overflow: hidden;
+    border-radius: 4px;
+    margin: 0 15px;
 }
 .rating-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-color), #89b1ff);
-    border-radius: 5px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+.rating-score {
+    width: 40px;
+    text-align: right;
+    font-weight: bold;
 }
 .rating-comment {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 8px;
-    line-height: 1.8;
-}
-
-/* --- 取引所への誘導セクション --- */
-.exchange-promo-section {
-    padding: 30px;
-}
-.exchange-promo-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.exchange-promo-item:last-child {
-    border-bottom: none;
-}
-.exchange-promo-info {
-    flex-grow: 1;
-}
-.exchange-promo-info h4 {
-    margin: 0 0 5px;
-    font-size: 1.2rem;
-}
-.exchange-promo-info p {
-    margin: 0;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.95em;
     color: var(--text-secondary);
 }
-.exchange-promo-item .btn {
-    flex-shrink: 0;
+
+/* 概要セクション */
+#coin-description {
+    color: var(--text-secondary);
+    font-size: 1.05em;
+}
+#coin-description h3 {
+    color: var(--text-primary);
+    font-size: 1.3em;
+    margin-top: 1.5em;
 }
 
-.exchange-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #fff;
+/* 公式リンク */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
 }
-
-/* --- 汎用ボタンスタイル --- */
-.btn {
-    display: inline-block;
-    text-align: center;
-    padding: 10px 20px;
+.link-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 12px;
     border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s, color 0.2s;
 }
-.btn-primary {
-    background-color: var(--accent-color);
-    color: #fff;
+.link-item:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
 }
-.btn-primary:hover {
-    background-color: #629eff;
-    text-decoration: none;
-    color: #fff;
+.link-item i {
+    width: 20px;
+    text-align: center;
 }
 
-/* --- レスポンシブ対応 --- */
-@media (max-width: 768px) {
-    .rating-item {
-        grid-template-columns: 80px 1fr 40px;
-    }
-    .exchange-promo-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    .exchange-promo-item .btn {
-        width: 100%;
-        text-align: center;
-    }
+/* エラーカード */
+.error-card {
+    text-align: center;
+    padding: 40px;
+}
+.error-card h2 {
+    color: var(--negative-color);
 }

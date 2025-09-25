@@ -1,215 +1,125 @@
+/* 基本設定と背景 */
 :root {
-    --background-color: #121212;
-    --primary-color: #FFFFFF;
-    --secondary-color: #B3B3B3;
-    --accent-color: #4D8AFF;
-    --positive-color: #2EBE77;
-    --negative-color: #D94242;
-    --glass-bg: rgba(30, 30, 30, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --background-image: url('images/bg.png');
+    --background-color: #0c0c0f;
+    --card-background: rgba(22, 22, 28, 0.6);
+    --glass-blur: backdrop-filter: blur(20px);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #aeb8c4;
+    --primary-color: #4D8AFF;
+    --positive-color: #00C853;
+    --negative-color: #FF5252;
 }
-
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--background-color);
-    color: var(--primary-color);
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     margin: 0;
-    background-image: url('images/bg.png');
+    background-color: var(--background-color);
+    background-image: var(--background-image);
     background-size: cover;
     background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
 }
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
-
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
     padding: 20px 0;
 }
-
-.logo h1 {
+header h1 {
+    font-size: 2.8em;
     margin: 0;
-    font-size: 1.8rem;
-    color: var(--primary-color);
+    font-weight: 700;
 }
-.logo a {
-    text-decoration: none;
-    color: inherit;
-}
-
-nav a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+header .subtitle {
+    font-size: 1.2em;
+    color: var(--text-secondary);
 }
 
-nav a.active, nav a:hover {
-    color: var(--primary-color);
-}
-
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.hero h2 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    margin-bottom: 30px;
-}
-
-.search-bar {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 15px 20px;
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    background-color: var(--glass-bg);
-    color: var(--primary-color);
-    font-size: 1rem;
-    backdrop-filter: blur(10px);
-}
-
-.market-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.card {
-    padding: 20px;
-}
-
-.glass {
-    background: var(--glass-bg);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-}
-
-.card h3 {
-    margin-top: 0;
-    color: var(--secondary-color);
-    font-weight: 500;
-}
-
-.card p {
-    font-size: 1.8rem;
-    margin-bottom: 0;
-    font-weight: 600;
-}
-
-.coin-list-section h2 {
-    font-size: 2rem;
+/* メインコンテンツ */
+main h2 {
+    font-size: 1.8em;
     margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.table-container {
-    overflow-x: auto;
+/* プロジェクトカード */
+.project-card {
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
 }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
-th, td {
-    padding: 15px;
-    text-align: left;
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-
-thead {
-    border-bottom: 1px solid var(--glass-border);
+.card-content img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
 }
-
-th {
-    color: var(--secondary-color);
-    font-weight: 500;
+.card-content h3 {
+    font-size: 1.5em;
+    margin: 0;
 }
-
-tbody tr {
-    border-bottom: 1px solid var(--glass-border);
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+.card-content .card-symbol {
+    color: var(--text-secondary);
+    font-size: 1em;
+    margin-bottom: 15px;
 }
-
-tbody tr:last-child {
-    border-bottom: none;
-}
-
-tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.coin-info {
+.card-rating {
     display: flex;
     align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    margin-top: auto;
 }
-
-.coin-info img {
-    width: 32px;
-    height: 32px;
-    margin-right: 15px;
-}
-
-.coin-name {
-    font-weight: 600;
-}
-
-.coin-symbol {
-    color: var(--secondary-color);
-    font-size: 0.9em;
-}
-
-.positive { color: var(--positive-color); }
-.negative { color: var(--negative-color); }
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.pagination button {
-    background-color: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+.card-rating .grade {
+    font-weight: bold;
     color: var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1.4em;
+}
+.card-rating .score {
+    color: var(--text-secondary);
+}
+.project-card.coming-soon {
+    opacity: 0.6;
+}
+.coming-soon .soon-text {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    font-weight: bold;
 }
 
-.pagination button:hover:not(:disabled) {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.pagination span {
-    margin: 0 15px;
-    font-weight: 500;
+/* 汎用スタイル */
+.card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 25px;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
 }

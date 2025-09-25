@@ -3,76 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoInfo - Real-time Crypto Prices</title>
+    <title>Crypto Analysis Hub</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="index.html" class="logo">
-                <h1>CryptoInfo</h1>
-            </a>
-            <nav>
-                <a href="index.html" class="active">ホーム</a>
-                <a href="exchanges.html">取引所</a>
-                <a href="blog.html">ブログ</a>
-            </nav>
+            <h1>Crypto Analysis Hub</h1>
+            <p class="subtitle">独自の視点で暗号資産を深く分析・評価します。</p>
         </header>
 
         <main>
-            <section class="hero">
-                <h2>リアルタイムで仮想通貨の価値を追跡</h2>
-                <p>市場を動かす全てのコイン。あなたの手のひらに。</p>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="例：Bitcoin, Ethereum...">
-                </div>
-            </section>
+            <h2>分析済みプロジェクト一覧</h2>
+            <div class="project-grid">
 
-            <section class="market-overview">
-                <div class="card glass">
-                    <h3><i class="fas fa-chart-line"></i> 時価総額</h3>
-                    <p id="marketCap">---</p>
-                </div>
-                <div class="card glass">
-                    <h3><i class="fas fa-sync-alt"></i> 24h 取引量</h3>
-                    <p id="volume24h">---</p>
-                </div>
-                <div class="card glass">
-                    <h3><i class="fab fa-bitcoin"></i> BTCドミナンス</h3>
-                    <p id="btcDominance">---</p>
-                </div>
-            </section>
+                <a href="coin-detail.html?id=bitcoin" class="project-card">
+                    <div class="card-content">
+                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin Logo">
+                        <h3>Bitcoin</h3>
+                        <p class="card-symbol">BTC</p>
+                        <div class="card-rating">
+                            <span class="grade">A+</span>
+                            <span class="score">92/100</span>
+                        </div>
+                    </div>
+                </a>
 
-            <section class="coin-list-section">
-                <h2>トップ100コイン</h2>
-                <div class="table-container glass">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>コイン</th>
-                                <th>価格</th>
-                                <th>24h %</th>
-                                <th>時価総額</th>
-                            </tr>
-                        </thead>
-                        <tbody id="coinTableBody">
-                            </tbody>
-                    </table>
+                <div class="project-card coming-soon">
+                     <div class="card-content">
+                        <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum Logo">
+                        <h3>Ethereum</h3>
+                        <p class="card-symbol">ETH</p>
+                        <div class="card-rating">
+                           <p class="soon-text">Coming Soon</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pagination">
-                    <button id="prevPage">前へ</button>
-                    <span id="pageInfo">Page 1</span>
-                    <button id="nextPage">次へ</button>
-                </div>
-            </section>
+
+            </div>
         </main>
     </div>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
 </body>
 </html>

@@ -3,221 +3,94 @@ document.addEventListener('DOMContentLoaded', () => {
     const coinId = urlParams.get('id');
 
     if (coinId) {
-        fetchCoinDetails(coinId);
-        fetchAndRenderChart(coinId, 7);
-
-        document.querySelectorAll('.time-range-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelector('.time-range-btn.active').classList.remove('active');
-                button.classList.add('active');
-                const days = button.dataset.days;
-                fetchAndRenderChart(coinId, days);
-            });
-        });
-
+        loadCustomData(coinId);
     } else {
         window.location.href = 'index.html';
     }
 });
 
-// より安定したCORSプロキシに変更
-const CORS_PROXY = "https://https-cors-anywhere.vercel.app/";
-const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';
-let priceChartInstance = null;
-
-async function fetchCoinDetails(coinId) {
-    // プロキシをURLの先頭に追加
-    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}?localization=ja&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        
-        displayApiData(data);
-        displayCustomData(coinId, data);
-
-    } catch (error) {
-        console.error("Failed to fetch coin details:", error);
-    }
-}
-
-/**
- * 各コインのカスタムJSONファイルを読み込んで表示する
- * @param {string} coinId - 表示するコインのID
- * @param {object} apiData - APIから取得したデータ（フォールバック用）
- */
-async function displayCustomData(coinId, apiData) {
-    const ratingSection = document.querySelector('.rating-section');
-    const descriptionContainer = document.getElementById('coin-description');
+async function loadCustomData(coinId) {
     const customDataUrl = `custom-data/${coinId}.json`;
 
     try {
         const response = await fetch(customDataUrl);
-        if (!response.ok) {
-            throw new Error('Custom data file not found.');
-        }
+        if (!response.ok) throw new Error('Custom data file not found.');
+        
         const data = await response.json();
 
-        // --- JSONデータが存在した場合の処理 ---
-        ratingSection.style.display = 'block';
+        // --- 基本情報の表示 ---
+        document.getElementById('coin-name').textContent = data.name || coinId;
+        document.getElementById('coin-symbol').textContent = data.symbol || '';
+        document.getElementById('coin-img').src = data.image_url || '';
+        document.title = `${data.name || '不明なコイン'} - プロジェクト分析`;
 
+        // --- 評価データの表示 ---
         if (data.rating) {
             const r = data.rating;
             const c = r.categories;
             document.getElementById('rating-score').innerHTML = `${r.score}<span>/100</span>`;
             document.getElementById('rating-grade').textContent = `評価: ${r.grade}`;
-            
             document.getElementById('rating-future-score').textContent = c.future;
             document.getElementById('rating-future-bar').style.width = `${c.future}%`;
-            
             document.getElementById('rating-tech-score').textContent = c.tech;
             document.getElementById('rating-tech-bar').style.width = `${c.tech}%`;
-
             document.getElementById('rating-team-score').textContent = c.team;
             document.getElementById('rating-team-bar').style.width = `${c.team}%`;
-
             document.getElementById('rating-tokenomics-score').textContent = c.tokenomics;
             document.getElementById('rating-tokenomics-bar').style.width = `${c.tokenomics}%`;
-
             document.getElementById('rating-community-score').textContent = c.community;
             document.getElementById('rating-community-bar').style.width = `${c.community}%`;
-
             document.getElementById('rating-comment').innerHTML = r.comment.replace(/\n/g, '<br>');
         }
 
+        // --- 概要の表示 ---
         if (data.description) {
-            // 改行文字(\n)を<br>タグに置換してHTMLに挿入
-            descriptionContainer.innerHTML = data.description.replace(/\n/g, '<br>');
+            document.getElementById('coin-description').innerHTML = data.description.replace(/\n/g, '<br>');
         }
 
-        if (data.officialLinks) {
-            displayOfficialLinks(data.officialLinks, true);
+        // --- 公式リンクの表示 ---
+        if (data.officialLinks && data.officialLinks.length > 0) {
+            displayOfficialLinks(data.officialLinks);
+        } else {
+            document.getElementById('official-links-container').style.display = 'none';
         }
-
 
     } catch (error) {
-        // --- JSONファイルがなかった場合 (またはエラー) の処理 ---
-        console.log(`Custom data for ${coinId} not found. Using API data as fallback.`);
-        ratingSection.style.display = 'none'; // 評価セクションを隠す
-        const apiDescription = apiData.description?.ja || apiData.description?.en || 'このコインに関する概要はありません。';
-        descriptionContainer.innerHTML = apiDescription.replace(/<a href/g, '<a target="_blank" href');
-         displayOfficialLinks(apiData.links, false);
+        console.error("Failed to load custom data:", error);
+        document.querySelector('main').innerHTML = `
+            <div class="card glass error-card">
+                <h2><i class="fas fa-exclamation-triangle"></i> データ読み込みエラー</h2>
+                <p>「${coinId}」の分析データが見つかりませんでした。</p>
+                <a href="index.html" class="back-button">プロジェクト一覧に戻る</a>
+            </div>`;
     }
 }
 
-
-function displayApiData(data) {
-    const marketData = data.market_data;
-    document.getElementById('coin-img').src = data.image.large;
-    document.getElementById('coin-name').textContent = data.name;
-    document.getElementById('coin-symbol').textContent = data.symbol.toUpperCase();
-    document.getElementById('coin-price').textContent = `¥${marketData.current_price.jpy.toLocaleString()}`;
-    const priceChange = marketData.price_change_percentage_24h;
-    const changeElement = document.getElementById('coin-change');
-    changeElement.textContent = `${priceChange ? priceChange.toFixed(2) : '0.00'}%`;
-    changeElement.className = priceChange >= 0 ? 'positive' : 'negative';
-    document.getElementById('market-cap-rank').textContent = `#${data.market_cap_rank}`;
-    document.getElementById('market-cap').textContent = formatJapaneseYen(marketData.market_cap.jpy);
-    document.getElementById('volume-24h').textContent = formatJapaneseYen(marketData.total_volume.jpy);
-    document.getElementById('circulating-supply').textContent = `${Math.round(marketData.circulating_supply).toLocaleString()} ${data.symbol.toUpperCase()}`;
-    document.getElementById('total-supply').textContent = data.market_data.total_supply ? `${Math.round(data.market_data.total_supply).toLocaleString()} ${data.symbol.toUpperCase()}` : '上限なし';
-    document.getElementById('genesis-date').textContent = data.genesis_date || 'N/A';
-}
-
-async function fetchAndRenderChart(coinId, days) {
-    // プロキシをURLの先頭に追加
-    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}/market_chart?vs_currency=jpy&days=${days}`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Failed to fetch chart data');
-        const data = await response.json();
-        const chartData = data.prices.map(item => ({ x: item[0], y: item[1] }));
-        renderChart(chartData);
-    } catch (error) {
-        console.error("Failed to render chart:", error);
-    }
-}
-
-function renderChart(data) {
-    const ctx = document.getElementById('priceChart').getContext('2d');
-    if (priceChartInstance) { priceChartInstance.destroy(); }
-    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-    gradient.addColorStop(0, 'rgba(77, 138, 255, 0.5)');   
-    gradient.addColorStop(1, 'rgba(77, 138, 255, 0.0)');
-    priceChartInstance = new Chart(ctx, {
-        type: 'line',
-        data: { datasets: [{ label: '価格 (JPY)', data: data, borderColor: '#4D8AFF', borderWidth: 2, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: gradient }] },
-        options: {
-            responsive: true, maintainAspectRatio: false,
-            scales: {
-                x: { type: 'time', time: { unit: 'day', tooltipFormat: 'yyyy/MM/dd HH:mm' }, grid: { display: false }, ticks: { color: '#8E8E93' } },
-                y: { grid: { color: 'rgba(255, 255, 255, 0.1)', borderColor: 'transparent' }, ticks: { color: '#8E8E93', callback: function(value) { return '¥' + value.toLocaleString(); } } }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-}
-
-function formatJapaneseYen(number) {
-    if (typeof number !== 'number') return 'N/A';
-    const trillion = 1_000_000_000_000; const billion = 100_000_000; const million = 10_000;
-    if (number >= trillion) return `¥ ${(number / trillion).toFixed(2)} 兆円`;
-    if (number >= billion) return `¥ ${(number / billion).toFixed(2)} 億円`;
-    if (number >= million) return `¥ ${(number / million).toLocaleString()} 万円`;
-    return `¥ ${number.toLocaleString()} 円`;
-}
-
-function displayOfficialLinks(links, isCustom) {
+function displayOfficialLinks(links) {
     const linksContainer = document.getElementById('official-links');
     linksContainer.innerHTML = '';
-    let linkMapping;
-
-    if (isCustom) {
-        linkMapping = links.map(link => ({
-            name: link.name,
-            url: link.url,
-            // Font Awesomeのアイコンクラスを名前に基づいて割り当てる（例）
-            icon: getIconForLink(link.name)
-        }));
-    } else {
-        // APIからのデータの場合の既存のマッピング
-        linkMapping = [
-            { name: 'ホームページ', url: links.homepage?.[0], icon: 'fas fa-home' },
-            { name: 'エクスプローラー', url: links.blockchain_site?.[0], icon: 'fas fa-cubes' },
-            { name: 'Twitter', url: links.twitter_screen_name ? `https://twitter.com/${links.twitter_screen_name}` : null, icon: 'fab fa-twitter' },
-            { name: 'Facebook', url: links.facebook_username ? `https://facebook.com/${links.facebook_username}` : null, icon: 'fab fa-facebook' },
-            { name: 'Telegram', url: links.telegram_channel_identifier ? `https.t.me/${links.telegram_channel_identifier}` : null, icon: 'fab fa-telegram-plane' },
-            { name: 'Reddit', url: links.subreddit_url, icon: 'fab fa-reddit-alien' },
-            { name: 'GitHub', url: links.repos_url?.github?.[0], icon: 'fab fa-github' }
-        ];
-    }
     
-    let createdLinks = 0;
-    for (const link of linkMapping) {
+    links.forEach(link => {
         if (link.url) {
             const linkElement = document.createElement('a');
             linkElement.href = link.url;
             linkElement.target = '_blank';
             linkElement.rel = 'noopener noreferrer';
             linkElement.className = 'link-item';
-            linkElement.innerHTML = `<i class="${link.icon}"></i><span>${link.name}</span>`;
+            linkElement.innerHTML = `<i class="${getIconForLink(link.name)}"></i><span>${link.name}</span>`;
             linksContainer.appendChild(linkElement);
-            createdLinks++;
         }
-    }
-
-    if (createdLinks === 0) {
-        linksContainer.closest('.card').style.display = 'none';
-    }
+    });
 }
 
 function getIconForLink(name) {
-    if (name.includes('公式サイト') || name.includes('ホームページ')) return 'fas fa-home';
-    if (name.includes('ホワイトペーパー')) return 'fas fa-file-alt';
-    if (name.includes('GitHub')) return 'fab fa-github';
-    if (name.includes('Twitter')) return 'fab fa-twitter';
-    if (name.includes('Reddit')) return 'fab fa-reddit-alien';
-    if (name.includes('Explorer')) return 'fas fa-cubes';
-    return 'fas fa-link'; // デフォルトアイコン
+    const lowerCaseName = name.toLowerCase();
+    if (lowerCaseName.includes('公式サイト') || lowerCaseName.includes('ホームページ')) return 'fas fa-home';
+    if (lowerCaseName.includes('ホワイトペーパー')) return 'fas fa-file-alt';
+    if (lowerCaseName.includes('github')) return 'fab fa-github';
+    if (lowerCaseName.includes('twitter')) return 'fab fa-twitter';
+    if (lowerCaseName.includes('reddit')) return 'fab fa-reddit-alien';
+    if (lowerCaseName.includes('explorer')) return 'fas fa-cubes';
+    if (lowerCaseName.includes('telegram')) return 'fab fa-telegram-plane';
+    return 'fas fa-link';
 }
