@@ -3,11 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchMarketData();
 });
 
-// 無料のCORSプロキシを追加
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+// より安定したCORSプロキシに変更
+const CORS_PROXY = "https://https-cors-anywhere.vercel.app/";
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';
 
 async function fetchTrendingCoins() {
+    // プロキシをURLの先頭に追加
     const url = `${CORS_PROXY}${COINGECKO_API_BASE}/search/trending`;
     try {
         const response = await fetch(url);
@@ -20,6 +21,7 @@ async function fetchTrendingCoins() {
 }
 
 async function fetchMarketData() {
+    // プロキシをURLの先頭に追加
     const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/markets?vs_currency=jpy&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
     try {
         const response = await fetch(url);

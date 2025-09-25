@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 無料のCORSプロキシを追加
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+// より安定したCORSプロキシに変更
+const CORS_PROXY = "https://https-cors-anywhere.vercel.app/";
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';
 let priceChartInstance = null;
 
 async function fetchCoinDetails(coinId) {
+    // プロキシをURLの先頭に追加
     const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}?localization=ja&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`;
 
     try {
@@ -125,6 +126,7 @@ function displayApiData(data) {
 }
 
 async function fetchAndRenderChart(coinId, days) {
+    // プロキシをURLの先頭に追加
     const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}/market_chart?vs_currency=jpy&days=${days}`;
     try {
         const response = await fetch(url);
@@ -185,7 +187,7 @@ function displayOfficialLinks(links, isCustom) {
             { name: 'エクスプローラー', url: links.blockchain_site?.[0], icon: 'fas fa-cubes' },
             { name: 'Twitter', url: links.twitter_screen_name ? `https://twitter.com/${links.twitter_screen_name}` : null, icon: 'fab fa-twitter' },
             { name: 'Facebook', url: links.facebook_username ? `https://facebook.com/${links.facebook_username}` : null, icon: 'fab fa-facebook' },
-            { name: 'Telegram', url: links.telegram_channel_identifier ? `https://t.me/${links.telegram_channel_identifier}` : null, icon: 'fab fa-telegram-plane' },
+            { name: 'Telegram', url: links.telegram_channel_identifier ? `https.t.me/${links.telegram_channel_identifier}` : null, icon: 'fab fa-telegram-plane' },
             { name: 'Reddit', url: links.subreddit_url, icon: 'fab fa-reddit-alien' },
             { name: 'GitHub', url: links.repos_url?.github?.[0], icon: 'fab fa-github' }
         ];
