@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (coinId) {
         loadCustomData(coinId);
     } else {
+        // Coin IDがない場合はホームページにリダイレクト
         window.location.href = 'index.html';
     }
 });
@@ -18,7 +19,7 @@ async function loadCustomData(coinId) {
         
         const data = await response.json();
 
-        // --- 基本情報の表示 ---
+        // --- 基本情報の表示 (画像とタブの問題を解決) ---
         document.getElementById('coin-name').textContent = data.name || coinId;
         document.getElementById('coin-symbol').textContent = data.symbol || '';
         document.getElementById('coin-img').src = data.image_url || '';
@@ -45,7 +46,7 @@ async function loadCustomData(coinId) {
 
         // --- 概要の表示 ---
         if (data.description) {
-            document.getElementById('coin-description').innerHTML = data.description.replace(/\n/g, '<br>');
+            document.getElementById('coin-description').innerHTML = data.description;
         }
 
         // --- 公式リンクの表示 ---
