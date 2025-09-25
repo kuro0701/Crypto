@@ -20,11 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// 無料のCORSプロキシを追加
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';
 let priceChartInstance = null;
 
 async function fetchCoinDetails(coinId) {
-    const url = `${COINGECKO_API_BASE}/coins/${coinId}?localization=ja&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`;
+    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}?localization=ja&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`;
 
     try {
         const response = await fetch(url);
@@ -123,7 +125,7 @@ function displayApiData(data) {
 }
 
 async function fetchAndRenderChart(coinId, days) {
-    const url = `${COINGECKO_API_BASE}/coins/${coinId}/market_chart?vs_currency=jpy&days=${days}`;
+    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/${coinId}/market_chart?vs_currency=jpy&days=${days}`;
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch chart data');
