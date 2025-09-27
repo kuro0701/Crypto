@@ -26,7 +26,7 @@ async function loadCoinData() {
         displayMainInfo(data);
         displaySummary(data);
         displayFullDescription(data);
-        displayRating(data.rating); // <-- この関数の中身が抜けていました
+        displayRating(data.rating);
         displayRelatedPosts(data.related_posts);
         displaySupportedExchanges(data.supported_exchanges);
 
@@ -56,11 +56,6 @@ function displayFullDescription(data) {
     document.getElementById('coin-description').innerHTML = data.description_full || '<p>詳細なプロジェクト情報はありません。</p>';
 }
 
-/**
- * ▼▼▼【重要】ここが前回、完全に抜け落ちていた評価表示のロジックです ▼▼▼
- * 評価データを読み込み、スコア、グレード、詳細なレーティングバーをHTMLに描画します。
- * @param {object} rating - 評価データオブジェクト
- */
 function displayRating(rating) {
     const r = rating || {};
     const d = r.details || {};
@@ -71,7 +66,6 @@ function displayRating(rating) {
     const categories = ['future', 'tech', 'team', 'tokenomics', 'community'];
     categories.forEach(cat => {
         const score = d[cat] || 0;
-        // 各要素が存在するか確認してから更新
         const scoreElement = document.getElementById(`rating-${cat}-score`);
         if (scoreElement) scoreElement.textContent = score;
         
@@ -99,23 +93,86 @@ function displayRelatedPosts(posts) {
     container.innerHTML = html;
 }
 
+/**
+ * ▼▼▼【変更点】取扱取引所セクションの表示ロジックを更新 ▼▼▼
+ * @param {Array} exchanges - プロジェクトデータに含まれる取引所のリスト
+ */
 function displaySupportedExchanges(exchanges) {
     const container = document.getElementById('exchanges-links');
     if (!exchanges || exchanges.length === 0) {
-        container.innerHTML = '<p>取扱取引所の情報はありません。</p>';
+        container.innerHTML = '<p>現在、国内の取扱取引所の情報はありません。</p>';
         return;
     }
-    let html = '';
-    exchanges.forEach(ex => {
-        html += `<a href="${ex.url}" class="exchange-link-item"><i class="fas fa-store"></i> ${ex.name}</a>`;
+
+    // サイトで定義済みの国内取引所情報（ロゴや特徴などを追加）
+    const domesticExchanges = {
+        'コインチェック': { 
+            rank: 1, 
+            logo: 'https://via.placeholder.com/50', // ロゴURL
+            catchphrase: 'アプリDL数No.1！初心者ならまずココ',
+            tags: ['初心者人気 No.1', 'アプリが使いやすい'],
+            detailUrl: 'exchange-detail.html',
+            affiliateUrl: '#' // アフィリエイトリンク
+        },
+        'GMOコイン': { 
+            rank: 2, 
+            logo: 'https://via.placeholder.com/50',
+            catchphrase: '手数料で選ぶなら。オリコン満足度No.1',
+            tags: ['手数料が安い', '取扱銘柄数が豊富'],
+            detailUrl: '#',
+            affiliateUrl: '#'
+        },
+        'bitFlyer': { 
+            rank: 3, 
+            logo: 'https://via.placeholder.com/50',
+            catchphrase: 'BTC取引量6年連続No.1。信頼と実績',
+            tags: ['セキュリティ重視', '1円から始められる'],
+            detailUrl: '#',
+            affiliateUrl: '#'
+        }
+    };
+
+    // jsonデータと上記で定義した国内取引所情報をマージし、取扱のあるものだけを抽出
+    const supportedDomesticExchanges = exchanges
+        .map(ex => {
+            const domesticData = domesticExchanges[ex.name];
+            return domesticData ? { ...ex, ...domesticData } : null;
+        })
+        .filter(ex => ex !== null)
+        .sort((a, b) => a.rank - b.rank); // ランキング順に並び替え
+
+    if (supportedDomesticExchanges.length === 0) {
+        container.innerHTML = '<p>現在、国内の取扱取引所の情報はありません。</p>';
+        return;
+    }
+
+    // 新しいカードデザインのHTMLを生成
+    let html = '<div class="exchange-list-detail">';
+    supportedDomesticExchanges.forEach(ex => {
+        html += `
+            <div class="exchange-card-detail">
+                <div class="card-header">
+                    <img src="${ex.logo}" alt="${ex.name} Logo" class="exchange-logo">
+                    <div class="exchange-title">
+                        <h4><span class="rank-badge">${ex.rank}</span>${ex.name}</h4>
+                        <p>${ex.catchphrase}</p>
+                    </div>
+                </div>
+                <div class="tags">
+                    ${ex.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="card-buttons">
+                    <a href="${ex.affiliateUrl}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">公式サイトで無料口座開設</a>
+                    <a href="${ex.detailUrl}" class="btn btn-secondary">詳細レビューを見る</a>
+                </div>
+            </div>
+        `;
     });
+    html += '</div>';
     container.innerHTML = html;
 }
 
-/**
- * エラーメッセージをページ全体に表示します。
- * @param {string} message - 表示するエラーメッセージ
- */
+
 function displayError(message) {
     const mainContent = document.querySelector('.detail-layout');
     if(mainContent){
