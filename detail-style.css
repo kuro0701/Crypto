@@ -68,8 +68,8 @@
     text-transform: uppercase;
 }
 
-/* 評価セクション */
-.rating-section h3, .description-section h2, #official-links-container h2, #other-projects h2 {
+/* 評価セクション と 各セクションタイトル */
+.rating-section h3, .description-section h2, #official-links-container h2, #other-projects h2, .summary-section h2, #related-posts-section h2, #exchanges-section h2 {
     margin-top: 0;
     font-size: 1.3em;
     border-bottom: 1px solid var(--border-color);
@@ -146,13 +146,8 @@
     margin-top: 1.5em;
 }
 
-/* 公式リンク */
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-.link-item {
+/* リンク */
+.other-links .link-item, #other-projects-links .link-item {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
@@ -164,7 +159,7 @@
     gap: 10px;
     transition: background-color 0.2s, color 0.2s;
 }
-.link-item:hover {
+.other-links .link-item:hover, #other-projects-links .link-item:hover {
     background-color: var(--primary-color);
     color: var(--text-primary);
 }
@@ -172,12 +167,16 @@
     width: 20px;
     text-align: center;
 }
-.other-links .link-item img {
+#other-projects-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+#other-projects .link-item img {
     width: 24px;
     height: 24px;
     border-radius: 50%;
 }
-
 
 /* エラーカード */
 .error-card {
@@ -187,32 +186,112 @@
 .error-card h2 {
     color: var(--negative-color);
 }
-/* detail-style.cssの末尾に追加 */
 
 /* アナリストの視点セクション */
-.summary-section h2 {
-    margin-top: 0;
-    font-size: 1.3em;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 #description-summary {
     font-size: 1.1em;
     color: var(--text-secondary);
     line-height: 1.8;
 }
-/* 関連分析記事 */
-#related-posts-section h2 {
-    margin-top: 0;
-    font-size: 1.3em;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+
+/* --- 取扱取引所セクションのスタイル --- */
+
+/* 汎用ボタン・タグ (取引所カードで使用) */
+.btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #629eff;
+}
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.tag {
+    background-color: rgba(77, 138, 255, 0.2);
+    color: var(--accent-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* メインコンテンツ内の取引所リスト */
+.exchange-list-detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* 取引所カード本体 */
+.exchange-card-detail {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+.exchange-card-detail .card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
+}
+.exchange-card-detail .exchange-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fff;
+}
+.exchange-card-detail .exchange-title h4 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--text-primary); /* primary-colorから変更 */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.exchange-card-detail .rank-badge {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 24px;
+}
+.exchange-card-detail .exchange-title p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 4px 0 0;
+}
+.exchange-card-detail .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.exchange-card-detail .card-buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }

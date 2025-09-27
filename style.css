@@ -10,8 +10,7 @@
     --primary-color: #4D8AFF;
     --positive-color: #00C853;
     --negative-color: #FF5252;
-    /* exchanges-style.css から必要な変数を追加 */
-    --accent-color: #4D8AFF; 
+    --accent-color: #4D8AFF; /* 念のため追加 */
 }
 body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -28,6 +27,163 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+/* ヘッダー */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.logo-link {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+header h1 {
+    font-size: 2.2em;
+    margin: 0;
+    font-weight: 700;
+}
+.main-nav {
+    display: flex;
+    gap: 25px;
+}
+.main-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--primary-color);
+}
+.hero-section {
+    background: rgba(12, 12, 15, 0.5);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+header .subtitle {
+    font-size: 1.4em;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+.hero-text {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* メインコンテンツ */
+main h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* プロジェクトカード */
+.project-card {
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.card-content img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+.card-content h3 {
+    font-size: 1.5em;
+    margin: 0;
+}
+.card-content .card-symbol {
+    color: var(--text-secondary);
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    margin-top: auto;
+}
+.card-rating .grade {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.4em;
+}
+.card-rating .score {
+    color: var(--text-secondary);
+}
+.project-card.coming-soon {
+    opacity: 0.6;
+}
+.coming-soon .soon-text {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+.footer-links {
+    margin-top: 10px;
+}
+.footer-links a {
+    color: var(--text-secondary);
+    margin: 0 10px;
+}
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
 
 /* 汎用スタイル */
 .card {
@@ -38,311 +194,73 @@ body {
     -webkit-backdrop-filter: var(--glass-blur);
     backdrop-filter: var(--glass-blur);
 }
-
-.btn {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-    background-color: var(--accent-color);
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #629eff;
-}
-
-.btn-secondary {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--primary-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-
-/* 詳細ページヘッダー */
-.detail-header {
-    padding: 20px 0;
-    margin-bottom: 20px;
-}
-.back-button {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 1.1em;
-    transition: color 0.2s ease;
-}
-.back-button:hover {
-    color: var(--text-primary);
-}
-.back-button i {
-    margin-right: 8px;
-}
-
-/* 2カラムレイアウト */
-.detail-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
-.detail-main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-.detail-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-@media (max-width: 900px) {
-    .detail-layout {
-        grid-template-columns: 1fr;
-    }
-    .detail-main-content {
-       /* スマホではサイドバーが下にくるように */
-       order: 2;
-    }
-    .detail-sidebar {
-       order: 1;
-    }
-}
-
-/* 基本情報カード */
-.coin-main-info .coin-title {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.coin-main-info img {
-    width: 60px;
-    height: 60px;
-}
-.coin-main-info h1 {
-    margin: 0;
-    font-size: 2.2em;
-}
-.coin-main-info p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 1.2em;
-    text-transform: uppercase;
-}
-
-/* 評価セクション */
-.rating-section h3, .description-section h2, #official-links-container h2, #other-projects h2, .summary-section h2, #related-posts-section h2, #exchanges-section h2 {
-    margin-top: 0;
-    font-size: 1.3em;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.rating-summary {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 25px;
-}
-.overall-score {
-    font-size: 3em;
-    font-weight: 300;
-}
-.overall-score span {
-    font-size: 0.4em;
-    color: var(--text-secondary);
-}
-.overall-grade {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-.rating-details .rating-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 0.95em;
-}
-.rating-label {
-    width: 100px;
-    color: var(--text-secondary);
-}
-.rating-bar-bg {
-    flex-grow: 1;
-    height: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    margin: 0 15px;
-}
-.rating-bar {
-    height: 100%;
-    background-color: var(--primary-color);
-    border-radius: 4px;
-}
-.rating-score {
-    width: 40px;
-    text-align: right;
-    font-weight: bold;
-}
-.rating-comment {
-    margin-top: 20px;
+/* 比較テーブル */
+.comparison-section {
     padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.95em;
+}
+.table-container {
+    overflow-x: auto; /* スマホで横スクロール可能に */
+}
+#comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#comparison-table th, #comparison-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+#comparison-table th {
+    font-size: 0.9em;
     color: var(--text-secondary);
+    text-align: center;
 }
-
-/* 概要・詳細セクション */
-#description-summary {
-    font-size: 1.1em;
-    color: var(--text-secondary);
-    line-height: 1.8;
+#comparison-table td {
+    font-size: 1em;
+    text-align: center;
+    vertical-align: middle;
 }
-#coin-description {
-    color: var(--text-secondary);
-    font-size: 1.05em;
-    line-height: 1.8;
-}
-#coin-description h3 {
-    color: var(--text-primary);
-    font-size: 1.3em;
-    margin-top: 1.5em;
-}
-
-/* 関連リンク */
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+.project-name {
+    display: flex;
+    align-items: center;
     gap: 15px;
+    font-weight: bold;
+    text-align: left !important;
 }
-.link-item {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 8px;
+.project-name img {
+    width: 32px;
+    height: 32px;
+}
+.grade {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+.grade-Aplus { background-color: rgba(255, 171, 0, 0.2); color: #FFAB00; }
+.grade-A { background-color: rgba(77, 138, 255, 0.2); color: #4D8AFF; }
+.grade-Bplus { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+
+.rating-cell {
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: background-color 0.2s, color 0.2s;
+    justify-content: center;
 }
-.link-item:hover {
-    background-color: var(--primary-color);
+.score-bar-bg {
+    width: 80px; height: 6px; background: rgba(0,0,0,0.3); border-radius: 3px;
+}
+.score-bar { height: 100%; border-radius: 3px; }
+.score-bar.high { background: #00C853; }
+.score-bar.medium { background: #4D8AFF; }
+.score-bar.average { background: #FFAB00; }
+.score-bar.low { background: #FF5252; }
+
+.detail-link {
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.detail-link:hover {
     color: var(--text-primary);
-}
-.link-item i {
-    width: 20px;
-    text-align: center;
-}
-#other-projects-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-/* エラーカード */
-.error-card {
-    text-align: center;
-    padding: 40px;
-}
-.error-card h2 {
-    color: var(--negative-color);
-}
-
-/* ▼▼▼【変更点】ここから新しいスタイルを追加 ▼▼▼ */
-
-/* メインコンテンツ内の取扱取引所リスト */
-.exchange-list-detail {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-/* 取引所カード */
-.exchange-card-detail {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-}
-
-.exchange-card-detail .card-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.exchange-card-detail .exchange-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #fff;
-}
-
-.exchange-card-detail .exchange-title h4 {
-    font-size: 1.3rem;
-    margin: 0;
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.exchange-card-detail .rank-badge {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background-color: var(--accent-color);
-    color: var(--text-primary);
-    border-radius: 50%;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 24px;
-}
-
-.exchange-card-detail .exchange-title p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin: 4px 0 0;
-}
-
-.exchange-card-detail .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.exchange-card-detail .tag {
-    background-color: rgba(77, 138, 255, 0.2);
-    color: var(--accent-color);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.exchange-card-detail .card-buttons {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 }
