@@ -149,8 +149,12 @@ function displaySupportedExchanges(exchanges) {
     // 新しいカードデザインのHTMLを生成
     let html = '<div class="exchange-list-detail">';
     supportedDomesticExchanges.forEach(ex => {
+        // 特定の取引所（この場合はコインチェック）にisRecommendedフラグを立てる
+        const isRecommended = ex.name === 'コインチェック';
+
         html += `
-            <div class="exchange-card-detail">
+            <div class="exchange-card-detail ${isRecommended ? 'recommended' : ''}">
+                ${isRecommended ? '<div class="recommended-badge">イチオシ！</div>' : ''}
                 <div class="card-header">
                     <img src="${ex.logo}" alt="${ex.name} Logo" class="exchange-logo">
                     <div class="exchange-title">
@@ -171,7 +175,6 @@ function displaySupportedExchanges(exchanges) {
     html += '</div>';
     container.innerHTML = html;
 }
-
 
 function displayError(message) {
     const mainContent = document.querySelector('.detail-layout');
