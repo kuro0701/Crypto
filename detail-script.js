@@ -26,7 +26,7 @@ async function loadCoinData() {
         displayMainInfo(data);
         displaySummary(data);
         displayFullDescription(data);
-        displayRating(data.rating);
+        displayRating(data.rating); // <-- この関数の中身が抜けていました
         displayRelatedPosts(data.related_posts);
         displaySupportedExchanges(data.supported_exchanges);
 
@@ -56,6 +56,11 @@ function displayFullDescription(data) {
     document.getElementById('coin-description').innerHTML = data.description_full || '<p>詳細なプロジェクト情報はありません。</p>';
 }
 
+/**
+ * ▼▼▼【重要】ここが前回、完全に抜け落ちていた評価表示のロジックです ▼▼▼
+ * 評価データを読み込み、スコア、グレード、詳細なレーティングバーをHTMLに描画します。
+ * @param {object} rating - 評価データオブジェクト
+ */
 function displayRating(rating) {
     const r = rating || {};
     const d = r.details || {};
@@ -66,13 +71,18 @@ function displayRating(rating) {
     const categories = ['future', 'tech', 'team', 'tokenomics', 'community'];
     categories.forEach(cat => {
         const score = d[cat] || 0;
-        document.getElementById(`rating-${cat}-score`).textContent = score;
-        const bar = document.getElementById(`rating-${cat}-bar`);
-        bar.style.width = `${score}%`;
-        if (score >= 80) bar.style.backgroundColor = '#00C853';
-        else if (score >= 60) bar.style.backgroundColor = '#4D8AFF';
-        else if (score >= 40) bar.style.backgroundColor = '#FFAB00';
-        else bar.style.backgroundColor = '#FF5252';
+        // 各要素が存在するか確認してから更新
+        const scoreElement = document.getElementById(`rating-${cat}-score`);
+        if (scoreElement) scoreElement.textContent = score;
+        
+        const barElement = document.getElementById(`rating-${cat}-bar`);
+        if (barElement) {
+            barElement.style.width = `${score}%`;
+            if (score >= 80) barElement.style.backgroundColor = '#00C853';
+            else if (score >= 60) barElement.style.backgroundColor = '#4D8AFF';
+            else if (score >= 40) barElement.style.backgroundColor = '#FFAB00';
+            else barElement.style.backgroundColor = '#FF5252';
+        }
     });
 }
 
