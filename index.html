@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Analysis Hub</title>
+    <title>Crypto Analysis Hub - 独自の視点で暗号資産を分析・評価</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Crypto Analysis Hub</h1>
-            <p class="subtitle">独自の視点で暗号資産を深く分析・評価します。</p>
+            <div class="header-content">
+                 <a href="index.html" class="logo-link"><h1>Crypto Analysis Hub</h1></a>
+                 <nav class="main-nav">
+                    <a href="index.html" class="active">ホーム</a>
+                    <a href="exchanges.html">取引所</a>
+                    <a href="blog.html">ブログ</a>
+                </nav>
+            </div>
+            <div class="hero-section">
+                <p class="subtitle">独自の視点で暗号資産を深く分析・評価します。</p>
+                <p class="hero-text">データに基づいた公平な評価と、複雑な情報をシンプルに解説することで、あなたの賢明な判断をサポートします。</p>
+            </div>
         </header>
 
         <main>
-            <h2>分析済みプロジェクト一覧</h2>
-            <div class="project-grid">
+             <section class="comparison-section card glass">
+                <h2><i class="fas fa-balance-scale-right"></i> プロジェクト比較</h2>
+                <div class="table-container">
+                    <table id="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>プロジェクト</th>
+                                <th>総合評価</th>
+                                <th>将来性</th>
+                                <th>技術力</th>
+                                <th>チーム</th>
+                                <th>トークノミクス</th>
+                                <th>コミュニティ</th>
+                                <th>詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+             </main>
 
-                <a href="coin-detail.html?id=bitcoin" class="project-card">
-                    <div class="card-content">
-                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin Logo">
-                        <h3>Bitcoin</h3>
-                        <p class="card-symbol">BTC</p>
-                        <div class="card-rating">
-                            <span class="grade">A+</span>
-                            <span class="score">92/100</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="coin-detail.html?id=ethereum" class="project-card">
-                     <div class="card-content">
-                        <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum Logo">
-                        <h3>Ethereum</h3>
-                        <p class="card-symbol">ETH</p>
-                        <div class="card-rating">
-                           <span class="grade">A</span>
-                           <span class="score">85/100</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="coin-detail.html?id=tether" class="project-card">
-                    <div class="card-content">
-                       <img src="https://assets.coingecko.com/coins/images/325/large/Tether.png" alt="Tether Logo">
-                       <h3>Tether</h3>
-                       <p class="card-symbol">USDT</p>
-                       <div class="card-rating">
-                          <span class="grade">B+</span>
-                          <span class="score">78/100</span>
-                       </div>
-                   </div>
-               </a>
-
+        <footer>
+            <p>&copy; 2025 Crypto Analysis Hub. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">運営者情報</a>
+                <a href="#">プライバシーポリシー</a>
             </div>
-        </main>
+        </footer>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

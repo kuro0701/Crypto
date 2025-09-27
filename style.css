@@ -26,27 +26,77 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+/* ヘッダー */
 header {
     text-align: center;
     margin-bottom: 40px;
     padding: 20px 0;
 }
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.logo-link {
+    text-decoration: none;
+    color: var(--text-primary);
+}
 header h1 {
-    font-size: 2.8em;
+    font-size: 2.2em;
     margin: 0;
     font-weight: 700;
 }
-header .subtitle {
-    font-size: 1.2em;
+.main-nav {
+    display: flex;
+    gap: 25px;
+}
+.main-nav a {
     color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--primary-color);
+}
+.hero-section {
+    background: rgba(12, 12, 15, 0.5);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+header .subtitle {
+    font-size: 1.4em;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+.hero-text {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* メインコンテンツ */
 main h2 {
     font-size: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .project-grid {
     display: grid;
@@ -114,6 +164,26 @@ main h2 {
     font-weight: bold;
 }
 
+/* フッター */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+.footer-links {
+    margin-top: 10px;
+}
+.footer-links a {
+    color: var(--text-secondary);
+    margin: 0 10px;
+}
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
+
 /* 汎用スタイル */
 .card {
     background: var(--card-background);
@@ -122,4 +192,76 @@ main h2 {
     padding: 25px;
     -webkit-backdrop-filter: var(--glass-blur);
     backdrop-filter: var(--glass-blur);
+}
+/* style.cssの末尾に追加 */
+
+/* 比較テーブル */
+.comparison-section {
+    padding-top: 20px;
+}
+.table-container {
+    overflow-x: auto; /* スマホで横スクロール可能に */
+}
+#comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#comparison-table th, #comparison-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+#comparison-table th {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    text-align: center;
+}
+#comparison-table td {
+    font-size: 1em;
+    text-align: center;
+    vertical-align: middle;
+}
+.project-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    text-align: left !important;
+}
+.project-name img {
+    width: 32px;
+    height: 32px;
+}
+.grade {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+.grade-Aplus { background-color: rgba(255, 171, 0, 0.2); color: #FFAB00; }
+.grade-A { background-color: rgba(77, 138, 255, 0.2); color: #4D8AFF; }
+.grade-Bplus { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+
+.rating-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.score-bar-bg {
+    width: 80px; height: 6px; background: rgba(0,0,0,0.3); border-radius: 3px;
+}
+.score-bar { height: 100%; border-radius: 3px; }
+.score-bar.high { background: #00C853; }
+.score-bar.medium { background: #4D8AFF; }
+.score-bar.average { background: #FFAB00; }
+.score-bar.low { background: #FF5252; }
+
+.detail-link {
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.detail-link:hover {
+    color: var(--text-primary);
 }

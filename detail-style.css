@@ -17,20 +17,33 @@
 }
 
 /* 2カラムレイアウト */
-.detail-main-grid {
+.detail-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
     gap: 30px;
     align-items: start;
 }
-.left-column, .right-column {
+.detail-main-content {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
+.detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 @media (max-width: 900px) {
-    .detail-main-grid {
+    .detail-layout {
         grid-template-columns: 1fr;
+    }
+    .detail-main-content {
+       /* スマホではサイドバーが下にくるように */
+       order: 2;
+    }
+    .detail-sidebar {
+       order: 1;
     }
 }
 
@@ -56,11 +69,15 @@
 }
 
 /* 評価セクション */
-.rating-section h3, .description-section h2, #official-links-container h2 {
+.rating-section h3, .description-section h2, #official-links-container h2, #other-projects h2 {
     margin-top: 0;
+    font-size: 1.3em;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .rating-summary {
     display: flex;
@@ -121,6 +138,7 @@
 #coin-description {
     color: var(--text-secondary);
     font-size: 1.05em;
+    line-height: 1.8;
 }
 #coin-description h3 {
     color: var(--text-primary);
@@ -154,6 +172,12 @@
     width: 20px;
     text-align: center;
 }
+.other-links .link-item img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
 
 /* エラーカード */
 .error-card {
@@ -162,4 +186,33 @@
 }
 .error-card h2 {
     color: var(--negative-color);
+}
+/* detail-style.cssの末尾に追加 */
+
+/* アナリストの視点セクション */
+.summary-section h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#description-summary {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+/* 関連分析記事 */
+#related-posts-section h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

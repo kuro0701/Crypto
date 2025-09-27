@@ -14,49 +14,46 @@
             <a href="index.html" class="back-button"><i class="fas fa-chevron-left"></i> プロジェクト一覧に戻る</a>
         </header>
 
-        <main class="detail-main-grid">
-            <div class="left-column">
+        <div class="detail-layout">
+            <main class="detail-main-content">
+                <section class="summary-section card glass">
+                    <h2><i class="fas fa-user-tie"></i> アナリストの視点</h2>
+                    <p id="description-summary">...</p>
+                </section>
+                <section class="description-section card glass">
+                    <h2><i class="fas fa-info-circle"></i>プロジェクト詳細</h2>
+                    <div id="coin-description">
+                        <p>データを読み込んでいます...</p>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="detail-sidebar">
                 <div class="coin-main-info card glass">
                     <div class="coin-title">
-                        <img id="coin-img" src="" alt="coin image">
+                        <img id="coin-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="coin image">
                         <div>
-                            <h1 id="coin-name"></h1>
+                            <h1 id="coin-name">...</h1>
                             <p id="coin-symbol"></p>
                         </div>
                     </div>
-                </div>
+                    </div>
 
                 <section class="rating-section card glass">
                     <h3><i class="fas fa-star-half-alt"></i> プロジェクト評価</h3>
-                    <div class="rating-summary">
-                        <p class="overall-score" id="rating-score">--<span>/100</span></p>
-                        <p class="overall-grade" id="rating-grade">評価: -</p>
-                    </div>
-                    <div class="rating-details">
-                        <div class="rating-item"><span class="rating-label">将来性</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-future-bar"></div></div><span class="rating-score" id="rating-future-score">--</span></div>
-                        <div class="rating-item"><span class="rating-label">技術力</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-tech-bar"></div></div><span class="rating-score" id="rating-tech-score">--</span></div>
-                        <div class="rating-item"><span class="rating-label">チーム</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-team-bar"></div></div><span class="rating-score" id="rating-team-score">--</span></div>
-                        <div class="rating-item"><span class="rating-label">トークノミクス</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-tokenomics-bar"></div></div><span class="rating-score" id="rating-tokenomics-score">--</span></div>
-                        <div class="rating-item"><span class="rating-label">コミュニティ</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-community-bar"></div></div><span class="rating-score" id="rating-community-score">--</span></div>
-                    </div>
-                    <div class="rating-comment">
-                        <p id="rating-comment"></p>
-                    </div>
-                </section>
-                
-                <div id="official-links-container" class="card glass">
-                    <h2><i class="fas fa-link"></i>公式リンク</h2>
-                    <div class="links-grid" id="official-links"></div>
-                </div>
-            </div>
+                    </section>
 
-            <div class="right-column">
-                <section class="description-section card glass">
-                    <h2><i class="fas fa-info-circle"></i>プロジェクト概要</h2>
-                    <div id="coin-description"></div>
-                </section>
-            </div>
-        </main>
+                <div id="related-posts-section" class="card glass">
+                    <h2><i class="fas fa-book-reader"></i> 関連分析記事</h2>
+                    <div class="other-links" id="related-posts-links">
+                        <p>関連情報はありません。</p>
+                    </div>
+                </div>
+                <div id="other-projects" class="card glass">
+                    <h2><i class="fas fa-project-diagram"></i> 他のプロジェクト</h2>
+                    </div>
+            </aside>
+        </div>
     </div>
     <script src="detail-script.js"></script>
 </body>

@@ -1,78 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetchTrendingCoins();
-    fetchMarketData();
+    // 比較テーブルが存在する場合に実行
+    if (document.getElementById('comparison-table')) {
+        loadComparisonData();
+    }
 });
 
-// より安定したCORSプロキシに変更
-const CORS_PROXY = "https://https-cors-anywhere.vercel.app/";
-const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';
+async function loadComparisonData() {
+    const projectIds = ['bitcoin', 'ethereum', 'tether']; // 分析済みのIDリスト
+    const tableBody = document.querySelector('#comparison-table tbody');
+    
+    // 各プロジェクトのデータを並行して取得
+    const projectDataPromises = projectIds.map(id => 
+        fetch(`custom-data/${id}.json`).then(res => {
+            if (!res.ok) throw new Error(`${id}.json not found`);
+            return res.json();
+        })
+    );
 
-async function fetchTrendingCoins() {
-    // プロキシをURLの先頭に追加
-    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/search/trending`;
     try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        displayTrendingCoins(data.coins);
+        const projects = await Promise.all(projectDataPromises);
+        
+        // 取得したデータでテーブルを生成
+        projects.forEach(data => {
+            const r = data.rating;
+            const d = r.details;
+            const row = `
+                <tr>
+                    <td class="project-name">
+                        <img src="${data.image}" alt="${data.name}">
+                        <span>${data.name}</span>
+                    </td>
+                    <td data-label="総合評価"><span class="grade grade-${r.grade.replace('+', 'plus')}">${r.grade}</span> (${r.overall})</td>
+                    <td data-label="将来性">${createRatingCell(d.future)}</td>
+                    <td data-label="技術力">${createRatingCell(d.tech)}</td>
+                    <td data-label="チーム">${createRatingCell(d.team)}</td>
+                    <td data-label="トークノミクス">${createRatingCell(d.tokenomics)}</td>
+                    <td data-label="コミュニティ">${createRatingCell(d.community)}</td>
+                    <td data-label="詳細"><a href="coin-detail.html?id=${data.id}" class="detail-link">分析 <i class="fas fa-angle-right"></i></a></td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
     } catch (error) {
-        console.error("Failed to fetch trending coins:", error);
+        console.error("比較データの読み込みに失敗:", error);
+        tableBody.innerHTML = `<tr><td colspan="8">データの読み込みに失敗しました。</td></tr>`;
     }
 }
 
-async function fetchMarketData() {
-    // プロキシをURLの先頭に追加
-    const url = `${CORS_PROXY}${COINGECKO_API_BASE}/coins/markets?vs_currency=jpy&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        displayMarketData(data);
-    } catch (error) {
-        console.error("Failed to fetch market data:", error);
-    }
-}
+// 評価スコアに応じたバーを生成するヘルパー関数
+function createRatingCell(score) {
+    let colorClass = 'low';
+    if (score >= 80) colorClass = 'high';
+    else if (score >= 60) colorClass = 'medium';
+    else if (score >= 40) colorClass = 'average';
 
-
-function displayTrendingCoins(coins) {
-    const container = document.getElementById('trending-coins-container');
-    container.innerHTML = '';
-    coins.forEach(coin => {
-        const coinItem = `
-            <a href="coin-detail.html?id=${coin.item.id}" class="trending-coin">
-                <img src="${coin.item.small}" alt="${coin.item.name}">
-                <div class="trending-coin-info">
-                    <p class="coin-name">${coin.item.name}</p>
-                    <p class="coin-symbol">${coin.item.symbol.toUpperCase()}</p>
-                </div>
-                 <p class="coin-rank">#${coin.item.market_cap_rank}</p>
-            </a>
-        `;
-        container.innerHTML += coinItem;
-    });
-}
-
-function displayMarketData(coins) {
-    const tbody = document.getElementById('crypto-table-body');
-    tbody.innerHTML = '';
-    coins.forEach(coin => {
-        const priceChange = coin.price_change_percentage_24h;
-        const changeClass = priceChange >= 0 ? 'positive' : 'negative';
-
-        const row = `
-            <tr>
-                <td class="rank">#${coin.market_cap_rank}</td>
-                <td class="coin">
-                    <a href="coin-detail.html?id=${coin.id}">
-                        <img src="${coin.image}" alt="${coin.name}">
-                        <span>${coin.name} <span class="symbol">${coin.symbol.toUpperCase()}</span></span>
-                    </a>
-                </td>
-                <td class="price">¥${coin.current_price.toLocaleString()}</td>
-                <td class="change ${changeClass}">${priceChange ? priceChange.toFixed(2) : '0.00'}%</td>
-                <td class="market-cap">¥${coin.market_cap.toLocaleString()}</td>
-            </tr>
-        `;
-        tbody.innerHTML += row;
-    });
+    return `
+        <div class="rating-cell">
+            <span class="score-value">${score}</span>
+            <div class="score-bar-bg">
+                <div class="score-bar ${colorClass}" style="width: ${score}%;"></div>
+            </div>
+        </div>
+    `;
 }
