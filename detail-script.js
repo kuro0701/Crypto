@@ -100,8 +100,8 @@ function displaySupportedExchanges() {
     // 表示するDEXの情報を定義
     const dexInfo = {
         name: 'Rango Exchange',
-        // ▼▼▼【変更点】ロゴ画像を白色PNGに変更 ▼▼▼
-        logo: 'https://rango.exchange/img/rango.png',
+        // ▼▼▼【変更点】ロゴのURLを正常なSVGファイルに変更 ▼▼▼
+        logo: 'https://rango.exchange/img/rango-logo-dark.svg',
         catchphrase: '100以上のDEX/ブリッジから最適ルートを検索',
         tags: ['DEXアグリゲーター', 'クロスチェーン対応', 'マルチチェーン対応'],
         detailUrl: 'exchange-detail.html',
@@ -114,7 +114,6 @@ function displaySupportedExchanges() {
             <div class="exchange-card-detail recommended">
                 <div class="recommended-badge">DEX</div>
                 <div class="card-header">
-                    {/* ▼▼▼【変更点】imgタグからstyleを削除し、CSSの白背景を適用 ▼▼▼ */}
                     <img src="${dexInfo.logo}" alt="${dexInfo.name} Logo" class="exchange-logo">
                     <div class="exchange-title">
                         <h4>${dexInfo.name}</h4>
