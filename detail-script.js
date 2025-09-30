@@ -94,20 +94,18 @@ function displayRelatedPosts(posts) {
     container.innerHTML = html;
 }
 
-/**
- * ▼▼▼【変更点】取扱取引所をDEX(Rango Exchange)の情報に書き換え ▼▼▼
- */
 function displaySupportedExchanges() {
     const container = document.getElementById('exchanges-links');
     
     // 表示するDEXの情報を定義
     const dexInfo = {
         name: 'Rango Exchange',
-        logo: 'https://rango.exchange/img/rango-logo-dark.svg', // Rangoのロゴ画像URL
+        // ▼▼▼【変更点】ロゴ画像を白色PNGに変更 ▼▼▼
+        logo: 'https://rango.exchange/img/rango.png',
         catchphrase: '100以上のDEX/ブリッジから最適ルートを検索',
         tags: ['DEXアグリゲーター', 'クロスチェーン対応', 'マルチチェーン対応'],
-        detailUrl: 'exchange-detail.html', // 詳細ページへのリンク
-        affiliateUrl: 'https://rango.vip/a/EptIv4' // アフィリエイトリンク
+        detailUrl: 'exchange-detail.html',
+        affiliateUrl: 'https://rango.vip/a/EptIv4'
     };
 
     // 新しいカードデザインのHTMLを生成
@@ -116,7 +114,8 @@ function displaySupportedExchanges() {
             <div class="exchange-card-detail recommended">
                 <div class="recommended-badge">DEX</div>
                 <div class="card-header">
-                    <img src="${dexInfo.logo}" alt="${dexInfo.name} Logo" class="exchange-logo" style="background-color: transparent;">
+                    {/* ▼▼▼【変更点】imgタグからstyleを削除し、CSSの白背景を適用 ▼▼▼ */}
+                    <img src="${dexInfo.logo}" alt="${dexInfo.name} Logo" class="exchange-logo">
                     <div class="exchange-title">
                         <h4>${dexInfo.name}</h4>
                         <p>${dexInfo.catchphrase}</p>
