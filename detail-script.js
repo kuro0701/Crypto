@@ -112,7 +112,6 @@ function displaySupportedExchanges() {
             <div class="exchange-card-detail recommended">
                 <div class="recommended-badge">DEX</div>
                 <div class="card-header">
-                    {/* ▼▼▼【変更点】ロゴ画像を削除 ▼▼▼ */}
                     <div class="exchange-title">
                         <h4>${dexInfo.name}</h4>
                         <p>${dexInfo.catchphrase}</p>
