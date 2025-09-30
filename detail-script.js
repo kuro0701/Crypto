@@ -106,7 +106,7 @@ function displaySupportedExchanges() {
         logo: 'https://rango.exchange/img/rango-logo-dark.svg', // Rangoのロゴ画像URL
         catchphrase: '100以上のDEX/ブリッジから最適ルートを検索',
         tags: ['DEXアグリゲーター', 'クロスチェーン対応', 'マルチチェーン対応'],
-        detailUrl: 'https://rango.exchange/ja', // 公式サイトのURL
+        detailUrl: 'exchange-detail.html', // 詳細ページへのリンク
         affiliateUrl: 'https://rango.vip/a/EptIv4' // アフィリエイトリンク
     };
 
@@ -116,7 +116,7 @@ function displaySupportedExchanges() {
             <div class="exchange-card-detail recommended">
                 <div class="recommended-badge">DEX</div>
                 <div class="card-header">
-                    <img src="${dexInfo.logo}" alt="${dexInfo.name} Logo" class="exchange-logo">
+                    <img src="${dexInfo.logo}" alt="${dexInfo.name} Logo" class="exchange-logo" style="background-color: transparent;">
                     <div class="exchange-title">
                         <h4>${dexInfo.name}</h4>
                         <p>${dexInfo.catchphrase}</p>
@@ -127,7 +127,7 @@ function displaySupportedExchanges() {
                 </div>
                 <div class="card-buttons">
                     <a href="${dexInfo.affiliateUrl}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">スワップを始める</a>
-                    <a href="${dexInfo.detailUrl}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">公式サイト</a>
+                    <a href="${dexInfo.detailUrl}" class="btn btn-secondary">詳細を見る</a>
                 </div>
             </div>
         </div>
