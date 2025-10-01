@@ -238,9 +238,12 @@ footer {
     border-radius: 6px;
     display: inline-block;
 }
-.grade-Aplus { background-color: rgba(255, 171, 0, 0.2); color: #FFAB00; }
-.grade-A { background-color: rgba(77, 138, 255, 0.2); color: #4D8AFF; }
-.grade-Bplus { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+.grade-aplus { background-color: rgba(255, 171, 0, 0.2); color: #FFAB00; }
+.grade-a { background-color: rgba(77, 138, 255, 0.2); color: #4D8AFF; }
+.grade-bplus { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+/* ▼▼▼【修正点】評価「B」のスタイルを追加 ▼▼▼ */
+.grade-b { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+
 
 .rating-cell {
     display: flex;

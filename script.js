@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function loadComparisonData() {
     // 分析対象のプロジェクトIDを配列で管理します。
+    // ▼▼▼【修正点】ここに 'bnb' を追加 ▼▼▼
     const projectIds = ['bitcoin', 'ethereum', 'bnb', 'tether', 'xrp'];
     const tableBody = document.querySelector('#comparison-table tbody');
     
@@ -58,7 +59,7 @@ async function loadComparisonData() {
                         <img src="${data.image || ''}" alt="${data.name || ''}">
                         <span>${data.name || 'N/A'}</span>
                     </td>
-                    <td data-label="総合評価"><span class="grade grade-${(r.grade || '').replace('+', 'plus')}">${r.grade || '-'}</span> (${r.overall || 0})</td>
+                    <td data-label="総合評価"><span class="grade grade-${(r.grade || '').toLowerCase().replace('+', 'plus')}">${r.grade || '-'}</span> (${r.overall || 0})</td>
                     <td data-label="将来性">${createRatingCell(d.future)}</td>
                     <td data-label="技術力">${createRatingCell(d.tech)}</td>
                     <td data-label="チーム">${createRatingCell(d.team)}</td>
