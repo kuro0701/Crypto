@@ -20,9 +20,8 @@ async function loadComparisonData() {
     tableBody.innerHTML = `<tr><td colspan="8">データを読み込んでいます...</td></tr>`;
 
     // 各プロジェクトのJSONファイルを非同期で並行して取得します。
-    // ▼▼▼ 修正点1: データファイルへのパスを修正 ▼▼▼
     const fetchPromises = projectIds.map(id => 
-        fetch(`crypto/custom-data/${id}.json`)
+        fetch(`custom-data/${id}.json`)
         .then(res => {
             // ファイルの取得に失敗した場合はエラーをスローします。
             if (!res.ok) throw new Error(`Failed to load ${id}.json`);
@@ -65,8 +64,7 @@ async function loadComparisonData() {
                     <td data-label="チーム">${createRatingCell(d.team)}</td>
                     <td data-label="トークノミクス">${createRatingCell(d.tokenomics)}</td>
                     <td data-label="コミュニティ">${createRatingCell(d.community)}</td>
-                    {/* ▼▼▼ 修正点2: 詳細ページへのリンクのパスを修正 ▼▼▼ */}
-                    <td data-label="詳細"><a href="crypto/coin-detail.html?id=${data.id}" class="detail-link">分析 <i class="fas fa-angle-right"></i></a></td>
+                    <td data-label="詳細"><a href="coin-detail.html?id=${data.id}" class="detail-link">分析 <i class="fas fa-angle-right"></i></a></td>
                 </tr>
             `;
             tableBody.innerHTML += row;

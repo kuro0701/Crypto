@@ -1,178 +1,266 @@
-/* General Body Styles */
+/* 基本設定と背景 */
 :root {
-    --background-color: #121212; /* 背景色を調整 */
-    --card-background: rgba(28, 28, 32, 0.6);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    --backdrop-filter: blur(12px);
-    --text-primary: #F5F5F5; /* テキスト色を調整 */
+    --background-image: url('images/bg.png');
+    --background-color: #0c0c0f;
+    --card-background: rgba(22, 22, 28, 0.6);
+    --glass-blur: backdrop-filter: blur(20px);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
     --text-secondary: #aeb8c4;
-    --primary-color: #4D8AFF;   /* メインカラー (25%) */
-    --accent-color: #00C853;    /* アクセントカラー (5%) - ポジティブな印象 */
-    --base-color: var(--background-color); /* ベースカラー (70%) */
-    --font-size-base: 16px; /* 基準サイズ */
-    --font-size-lg: calc(var(--font-size-base) * 1.25);
-    --font-size-xl: calc(var(--font-size-lg) * 1.25);
-    --font-size-xxl: calc(var(--font-size-xl) * 1.25);
-    --line-height-base: 1.7; /* 行間を少し広げる */
+    --primary-color: #4D8AFF;
+    --positive-color: #00C853;
+    --negative-color: #FF5252;
+    --accent-color: #4D8AFF; /* 念のため追加 */
 }
-
 body {
-    font-family: 'Inter', 'Noto Sans JP', sans-serif; /* 新しいフォント指定 */
-    background-color: var(--background-color);
-    color: var(--text-primary);
-    line-height: var(--line-height-base);
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     margin: 0;
-    padding: 20px;
-    font-size: var(--font-size-base);
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
 }
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
-
-/* Header */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+/* ヘッダー */
 header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
-    border-bottom: var(--glass-border);
-}
-
-.logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: var(--text-primary);
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-    color: var(--text-primary);
-}
-
-/* Main Content */
-.main-content {
-    padding: 40px 0;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 60px 0;
-}
-
-.hero-section h1 {
-    font-size: var(--font-size-xxl);
+    flex-wrap: wrap;
     margin-bottom: 20px;
+}
+.logo-link {
+    text-decoration: none;
     color: var(--text-primary);
 }
-
-.hero-section p {
-    font-size: var(--font-size-lg);
+header h1 {
+    font-size: 2.2em;
+    margin: 0;
+    font-weight: 700;
+}
+.main-nav {
+    display: flex;
+    gap: 25px;
+}
+.main-nav a {
     color: var(--text-secondary);
-    margin-bottom: 40px;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
-
-/* Table Styles */
-.glass-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--card-background);
-    border-radius: 10px;
-    overflow: hidden;
-    border: var(--glass-border);
-    backdrop-filter: var(--backdrop-filter);
-    -webkit-backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--shadow);
-}
-
-.glass-table th,
-.glass-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: var(--glass-border);
-}
-
-.glass-table thead th {
-    background-color: rgba(255, 255, 255, 0.1);
+.main-nav a:hover,
+.main-nav a.active {
     color: var(--text-primary);
-    font-weight: bold;
+    border-bottom-color: var(--primary-color);
 }
-
-.glass-table tbody tr {
-    transition: background-color 0.3s ease;
+.hero-section {
+    background: rgba(12, 12, 15, 0.5);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
 }
-
-.glass-table tbody tr:hover {
-    background-color: rgba(77, 138, 255, 0.2);
+header .subtitle {
+    font-size: 1.4em;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 10px 0;
 }
-
-.glass-table tbody td {
+.hero-text {
+    font-size: 1.1em;
     color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.glass-table tbody td:first-child {
-    color: var(--text-primary);
-    font-weight: bold;
-}
-
-.rank {
-    font-weight: bold;
-    color: var(--text-primary);
-}
-
-.coin-name {
+/* メインコンテンツ */
+main h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
+    gap: 10px;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.coin-logo {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
-.positive {
-    color: #4caf50;
-}
-
-.negative {
-    color: #f44336;
-}
-
-.analyze-link {
-    color: var(--primary-color);
+/* プロジェクトカード */
+.project-card {
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 25px;
     text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.card-content img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+.card-content h3 {
+    font-size: 1.5em;
+    margin: 0;
+}
+.card-content .card-symbol {
+    color: var(--text-secondary);
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    margin-top: auto;
+}
+.card-rating .grade {
     font-weight: bold;
-    transition: color 0.3s ease;
+    color: var(--primary-color);
+    font-size: 1.4em;
+}
+.card-rating .score {
+    color: var(--text-secondary);
+}
+.project-card.coming-soon {
+    opacity: 0.6;
+}
+.coming-soon .soon-text {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    font-weight: bold;
 }
 
-.analyze-link:hover {
-    color: #8bb4ff;
+/* フッター */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
 }
-
-h1, h2, h3 {
+.footer-links {
+    margin-top: 10px;
+}
+.footer-links a {
+    color: var(--text-secondary);
+    margin: 0 10px;
+}
+.footer-links a:hover {
     color: var(--text-primary);
 }
-h1 { font-size: var(--font-size-xxl); }
-h2 { font-size: var(--font-size-xl); }
-h3 { font-size: var(--font-size-lg); }
+
+
+/* 汎用スタイル */
+.card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 25px;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+/* 比較テーブル */
+.comparison-section {
+    padding-top: 20px;
+}
+.table-container {
+    overflow-x: auto; /* スマホで横スクロール可能に */
+}
+#comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#comparison-table th, #comparison-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+#comparison-table th {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    text-align: center;
+}
+#comparison-table td {
+    font-size: 1em;
+    text-align: center;
+    vertical-align: middle;
+}
+.project-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    text-align: left !important;
+}
+.project-name img {
+    width: 32px;
+    height: 32px;
+}
+.grade {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+.grade-Aplus { background-color: rgba(255, 171, 0, 0.2); color: #FFAB00; }
+.grade-A { background-color: rgba(77, 138, 255, 0.2); color: #4D8AFF; }
+.grade-Bplus { background-color: rgba(0, 200, 83, 0.2); color: #00C853; }
+
+.rating-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.score-bar-bg {
+    width: 80px; height: 6px; background: rgba(0,0,0,0.3); border-radius: 3px;
+}
+.score-bar { height: 100%; border-radius: 3px; }
+.score-bar.high { background: #00C853; }
+.score-bar.medium { background: #4D8AFF; }
+.score-bar.average { background: #FFAB00; }
+.score-bar.low { background: #FF5252; }
+
+.detail-link {
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.detail-link:hover {
+    color: var(--text-primary);
+}
