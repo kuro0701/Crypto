@@ -1,24 +1,24 @@
 /* General Body Styles */
 :root {
-    --background-color: #121212; /* 背景色を調整 */
+    --background-color: #121212;
     --card-background: rgba(28, 28, 32, 0.6);
     --glass-border: 1px solid rgba(255, 255, 255, 0.1);
     --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     --backdrop-filter: blur(12px);
-    --text-primary: #F5F5F5; /* テキスト色を調整 */
+    --text-primary: #F5F5F5;
     --text-secondary: #aeb8c4;
-    --primary-color: #4D8AFF;   /* メインカラー (25%) */
-    --accent-color: #00C853;    /* アクセントカラー (5%) - ポジティブな印象 */
-    --base-color: var(--background-color); /* ベースカラー (70%) */
-    --font-size-base: 16px; /* 基準サイズ */
+    --primary-color: #4D8AFF;
+    --accent-color: #00C853;
+    --base-color: var(--background-color);
+    --font-size-base: 16px;
     --font-size-lg: calc(var(--font-size-base) * 1.25);
     --font-size-xl: calc(var(--font-size-lg) * 1.25);
     --font-size-xxl: calc(var(--font-size-xl) * 1.25);
-    --line-height-base: 1.7; /* 行間を少し広げる */
+    --line-height-base: 1.7;
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans JP', sans-serif; /* 新しいフォント指定 */
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
     background-color: var(--background-color);
     color: var(--text-primary);
     line-height: var(--line-height-base);
@@ -176,7 +176,6 @@ h1, h2, h3 {
 h1 { font-size: var(--font-size-xxl); }
 h2 { font-size: var(--font-size-xl); }
 h3 { font-size: var(--font-size-lg); }
-/* --- 追記ここから --- */
 
 .btn-analyze {
     display: inline-block;
@@ -195,5 +194,3 @@ h3 { font-size: var(--font-size-lg); }
     color: var(--text-primary) !important;
     transform: translateY(-2px);
 }
-
-/* --- 追記ここまで --- */

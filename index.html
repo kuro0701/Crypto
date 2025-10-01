@@ -3,59 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Analysis Hub - 独自の視点で暗号資産を分析・評価</title>
+    <title>Crypto Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="header-content">
-                 <a href="index.html" class="logo-link"><h1>Crypto Analysis Hub</h1></a>
-                 <nav class="main-nav">
-                    <a href="index.html" class="active">ホーム</a>
-                    <a href="exchanges.html">取引所</a>
-                    <a href="blog.html">ブログ</a>
-                </nav>
-            </div>
-            <div class="hero-section">
-                <p class="subtitle">独自の視点で暗号資産を深く分析・評価します。</p>
-                <p class="hero-text">データに基づいた公平な評価と、複雑な情報をシンプルに解説することで、あなたの賢明な判断をサポートします。</p>
-            </div>
+            <div class="logo">CryptoAnalytics</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="exchanges.html">Exchanges</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <main>
-             <section class="comparison-section card glass">
-                <h2><i class="fas fa-balance-scale-right"></i> プロジェクト比較</h2>
-                <div class="table-container">
-                    <table id="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>プロジェクト</th>
-                                <th>総合評価</th>
-                                <th>将来性</th>
-                                <th>技術力</th>
-                                <th>チーム</th>
-                                <th>トークノミクス</th>
-                                <th>コミュニティ</th>
-                                <th>詳細</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
+        <main class="main-content">
+            <section class="hero-section">
+                <h1>リアルタイム暗号通貨分析</h1>
+                <p>データに基づいた意思決定で、市場をリードする。</p>
             </section>
-             </main>
 
-        <footer>
-            <p>&copy; 2025 Crypto Analysis Hub. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="#">運営者情報</a>
-                <a href="#">プライバシーポリシー</a>
-            </div>
-        </footer>
+            <table class="glass-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>コイン</th>
+                        <th>価格</th>
+                        <th>24h 変動率</th>
+                        <th>時価総額</th>
+                        <th>アクション</th>
+                    </tr>
+                </thead>
+                <tbody id="crypto-list">
+                    </tbody>
+            </table>
+        </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
