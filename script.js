@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function loadComparisonData() {
     // 分析対象のプロジェクトIDを配列で管理します。
-    // ▼▼▼【修正点】ここに 'bnb' を追加 ▼▼▼
-    const projectIds = ['bitcoin', 'ethereum', 'bnb', 'tether', 'xrp'];
+    // ▼▼▼【修正点】ここに 'solana' を追加 ▼▼▼
+    const projectIds = ['bitcoin', 'ethereum', 'bnb', 'tether', 'xrp', 'solana'];
     const tableBody = document.querySelector('#comparison-table tbody');
     
     // テーブルが存在しない場合は処理を中断します。
