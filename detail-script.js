@@ -156,3 +156,18 @@ function displayError(message) {
         `;
     }
 }
+// --- 追記ここから ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggle-details-btn');
+    const detailsContainer = document.getElementById('evaluation-details');
+
+    if (toggleBtn && detailsContainer) {
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = detailsContainer.classList.toggle('hidden');
+            toggleBtn.textContent = isHidden ? '詳細を見る' : '閉じる';
+        });
+    }
+});
+
+// --- 追記ここまで ---
