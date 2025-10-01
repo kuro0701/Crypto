@@ -3,91 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Detail</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <title>プロジェクト分析</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo">CryptoAnalytics</div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="exchanges.html">Exchanges</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
+        <header class="detail-header">
+            <a href="index.html" class="back-button"><i class="fas fa-chevron-left"></i> プロジェクト一覧に戻る</a>
         </header>
 
-        <main class="main-content">
-            <div class="coin-header">
-                <img id="coin-logo" src="" alt="Coin Logo" class="coin-logo-large">
-                <div>
-                    <h1 id="coin-name"></h1>
-                    <p id="coin-symbol" class="coin-symbol-text"></p>
-                </div>
-            </div>
+        <div class="detail-layout">
+            <main class="detail-main-content">
+                <section class="summary-section card glass">
+                    <h2><i class="fas fa-user-tie"></i> アナリストの視点</h2>
+                    <p id="description-summary">...</p>
+                </section>
+                <section class="description-section card glass">
+                    <h2><i class="fas fa-info-circle"></i>プロジェクト詳細</h2>
+                    <div id="coin-description">
+                        <p>データを読み込んでいます...</p>
+                    </div>
+                </section>
 
-            <div class="glass-card">
-                <h2>総合評価</h2>
-                <div class="overall-score">
-                    <span id="total-score" class="score-value"></span>
-                    <span id="score-grade" class="score-grade"></span>
-                </div>
-                <p id="score-comment" class="score-comment"></p>
-            </div>
+                <section id="exchanges-section" class="card glass">
+                    <h2><i class="fas fa-exchange-alt"></i> 取扱DEX</h2>
+                    <div class="other-links" id="exchanges-links">
+                        </div>
+                </section>
+                </main>
 
-            <div class="glass-card">
-                <h2>プロジェクト評価</h2>
-                <button id="toggle-details-btn" class="details-btn">詳細を見る</button>
-                <div id="evaluation-details" class="evaluation-details-container hidden">
-                    <div class="evaluation-grid">
-                        <div class="evaluation-item">
-                            <h3>将来性</h3>
-                            <div class="score-bar-container">
-                                <div class="score-bar" id="future-bar"></div>
-                            </div>
-                            <span id="future-score"></span>
-                        </div>
-                        <div class="evaluation-item">
-                            <h3>技術力</h3>
-                            <div class="score-bar-container">
-                                <div class="score-bar" id="tech-bar"></div>
-                            </div>
-                            <span id="tech-score"></span>
-                        </div>
-                        <div class="evaluation-item">
-                            <h3>信頼性</h3>
-                            <div class="score-bar-container">
-                                <div class="score-bar" id="reliability-bar"></div>
-                            </div>
-                            <span id="reliability-score"></span>
-                        </div>
-                        <div class="evaluation-item">
-                            <h3>市場性</h3>
-                            <div class="score-bar-container">
-                                <div class="score-bar" id="market-bar"></div>
-                            </div>
-                            <span id="market-score"></span>
-                        </div>
-                        <div class="evaluation-item">
-                            <h3>コミュニティ</h3>
-                            <div class="score-bar-container">
-                                <div class="score-bar" id="community-bar"></div>
-                            </div>
-                            <span id="community-score"></span>
+            <aside class="detail-sidebar">
+                <div class="coin-main-info card glass">
+                    <div class="coin-title">
+                        <img id="coin-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="coin image">
+                        <div>
+                            <h1 id="coin-name">...</h1>
+                            <p id="coin-symbol"></p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="glass-card">
-                <h2>概要</h2>
-                <p id="coin-description"></p>
-            </div>
-        </main>
+
+                <section class="rating-section card glass">
+                    <h3><i class="fas fa-star-half-alt"></i> プロジェクト評価</h3>
+                    <div class="rating-summary">
+                        <p class="overall-score" id="rating-score">--<span>/100</span></p>
+                        <p class="overall-grade" id="rating-grade">評価: -</p>
+                    </div>
+                    <div class="rating-details">
+                        <div class="rating-item"><span class="rating-label">将来性</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-future-bar"></div></div><span class="rating-score" id="rating-future-score">--</span></div>
+                        <div class="rating-item"><span class="rating-label">技術力</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-tech-bar"></div></div><span class="rating-score" id="rating-tech-score">--</span></div>
+                        <div class="rating-item"><span class="rating-label">チーム</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-team-bar"></div></div><span class="rating-score" id="rating-team-score">--</span></div>
+                        <div class="rating-item"><span class="rating-label">トークノミクス</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-tokenomics-bar"></div></div><span class="rating-score" id="rating-tokenomics-score">--</span></div>
+                        <div class="rating-item"><span class="rating-label">コミュニティ</span><div class="rating-bar-bg"><div class="rating-bar" id="rating-community-bar"></div></div><span class="rating-score" id="rating-community-score">--</span></div>
+                    </div>
+                    <div class="rating-comment">
+                        <p id="rating-comment"></p>
+                    </div>
+                </section>
+                <div id="related-posts-section" class="card glass">
+                    <h2><i class="fas fa-book-reader"></i> 関連分析記事</h2>
+                    <div class="other-links" id="related-posts-links">
+                        </div>
+                </div>
+                
+                <div id="other-projects" class="card glass">
+                    <h2><i class="fas fa-project-diagram"></i> 他のプロジェクト</h2>
+                    <div class="other-links" id="other-projects-links">
+                         <a href="coin-detail.html?id=bitcoin" class="link-item"><img src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png" alt="Bitcoin"> Bitcoin</a>
+                         <a href="coin-detail.html?id=ethereum" class="link-item"><img src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png" alt="Ethereum"> Ethereum</a>
+                         <a href="coin-detail.html?id=tether" class="link-item"><img src="https://assets.coingecko.com/coins/images/325/thumb/Tether.png" alt="Tether"> Tether</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
     <script src="detail-script.js"></script>
 </body>

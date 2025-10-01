@@ -318,28 +318,3 @@
     border-top-right-radius: 11px; /* カードの角丸に合わせる */
     z-index: 1; /* カードコンテンツより手前に表示 */
 }
-/* --- 追記ここから --- */
-
-.hidden {
-    display: none;
-}
-
-.details-btn {
-    background-color: var(--primary-color);
-    color: var(--text-primary);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.details-btn:hover {
-    background-color: #8bb4ff; /* A lighter shade of primary color */
-}
-
-/* --- 追記ここまで --- */

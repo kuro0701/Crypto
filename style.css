@@ -1,24 +1,24 @@
 /* General Body Styles */
 :root {
-    --background-color: #121212;
+    --background-color: #121212; /* 背景色を調整 */
     --card-background: rgba(28, 28, 32, 0.6);
     --glass-border: 1px solid rgba(255, 255, 255, 0.1);
     --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     --backdrop-filter: blur(12px);
-    --text-primary: #F5F5F5;
+    --text-primary: #F5F5F5; /* テキスト色を調整 */
     --text-secondary: #aeb8c4;
-    --primary-color: #4D8AFF;
-    --accent-color: #00C853;
-    --base-color: var(--background-color);
-    --font-size-base: 16px;
+    --primary-color: #4D8AFF;   /* メインカラー (25%) */
+    --accent-color: #00C853;    /* アクセントカラー (5%) - ポジティブな印象 */
+    --base-color: var(--background-color); /* ベースカラー (70%) */
+    --font-size-base: 16px; /* 基準サイズ */
     --font-size-lg: calc(var(--font-size-base) * 1.25);
     --font-size-xl: calc(var(--font-size-lg) * 1.25);
     --font-size-xxl: calc(var(--font-size-xl) * 1.25);
-    --line-height-base: 1.7;
+    --line-height-base: 1.7; /* 行間を少し広げる */
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif; /* 新しいフォント指定 */
     background-color: var(--background-color);
     color: var(--text-primary);
     line-height: var(--line-height-base);
@@ -176,21 +176,3 @@ h1, h2, h3 {
 h1 { font-size: var(--font-size-xxl); }
 h2 { font-size: var(--font-size-xl); }
 h3 { font-size: var(--font-size-lg); }
-
-.btn-analyze {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: var(--primary-color);
-    color: var(--text-primary) !important; /* !important to override default link color */
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-analyze:hover {
-    background-color: #8bb4ff;
-    color: var(--text-primary) !important;
-    transform: translateY(-2px);
-}
