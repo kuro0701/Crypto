@@ -97,36 +97,49 @@ function displayRelatedPosts(posts) {
 function displaySupportedExchanges() {
     const container = document.getElementById('exchanges-links');
     
-    // 表示するDEXの情報を定義
-    const dexInfo = {
-        name: 'Rango Exchange',
-        catchphrase: '100以上のDEX/ブリッジから最適ルートを検索',
-        tags: ['DEXアグリゲーター', 'クロスチェーン対応', 'マルチチェーン対応'],
-        detailUrl: 'exchange-detail.html',
-        affiliateUrl: 'https://rango.vip/a/EptIv4'
-    };
+    // 表示するDEXの情報を配列で定義
+    const dexes = [
+        {
+            name: 'Rango Exchange',
+            catchphrase: '100以上のDEX/ブリッジから最適ルートを検索',
+            tags: ['DEXアグリゲーター', 'クロスチェーン対応', 'マルチチェーン対応'],
+            detailUrl: 'exchange-detail.html',
+            affiliateUrl: 'https://rango.vip/a/EptIv4',
+            recommended: true
+        },
+        {
+            name: 'ElectraDEX',
+            catchphrase: 'Electra Protocol上のP2P DEX',
+            tags: ['P2P', 'オンチェーン', '流動性プール不要'],
+            detailUrl: 'electradex-detail.html',
+            affiliateUrl: 'https://app.electra.trade/ref/49D6AjPd',
+            recommended: false
+        }
+    ];
 
     // 新しいカードデザインのHTMLを生成
-    let html = `
-        <div class="exchange-list-detail">
-            <div class="exchange-card-detail recommended">
-                <div class="recommended-badge">DEX</div>
+    let html = '<div class="exchange-list-detail">';
+    dexes.forEach(dex => {
+        html += `
+            <div class="exchange-card-detail ${dex.recommended ? 'recommended' : ''}">
+                ${dex.recommended ? '<div class="recommended-badge">DEX</div>' : ''}
                 <div class="card-header">
                     <div class="exchange-title">
-                        <h4>${dexInfo.name}</h4>
-                        <p>${dexInfo.catchphrase}</p>
+                        <h4>${dex.name}</h4>
+                        <p>${dex.catchphrase}</p>
                     </div>
                 </div>
                 <div class="tags">
-                    ${dexInfo.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    ${dex.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
                 <div class="card-buttons">
-                    <a href="${dexInfo.affiliateUrl}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">スワップを始める</a>
-                    <a href="${dexInfo.detailUrl}" class="btn btn-secondary">詳細を見る</a>
+                    <a href="${dex.affiliateUrl}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">スワップを始める</a>
+                    <a href="${dex.detailUrl}" class="btn btn-secondary">詳細を見る</a>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+    });
+    html += '</div>';
 
     container.innerHTML = html;
 }
